@@ -5,8 +5,8 @@ A Sensorimotor Inference Engine is a certain kind of unsupervised machine learni
 It's key features are:
 
 1. *Autonomous*: The agent is unsupervised as it learns the state space of the environment, through exploration, _without_ the imposition of external reward.
-2. *Modular*: In order to overcome scaling problems due to the combinatorial complexity inherent in most environments, it is thought that the Sensorimotor inference engine should be made up of many nearly identical memory/compute nodes connected in a way learned by the interactions the group of nodes has with the environment.
-3. *Controllable*: Once trained a sensorimotor inference engine deeply understands the environment it is in. In order to cause it to do useful work in the environment it must be told what state it should put the environment in.
+2. *Controllable*: Once trained a sensorimotor inference engine deeply understands the environment it is in. In order to cause it to do useful work in the environment it must be told what state it should put the environment in.
+3. *Modular*: In order to overcome scaling problems due to the combinatorial complexity inherent in most environments, it is thought that the Sensorimotor inference engine should be made up of many nearly identical memory/compute nodes connected in a way learned by the interactions the group of nodes has with the environment.
 
 A Sensorimotor Inference Engine can be thought of as a collection of agents that inherently learn to work together to manipulate the environment in order to learn (that is, with the inherent goal of learning) how the environment can be manipulated.
 
@@ -23,7 +23,7 @@ The simplest possible design is merely a lookup table combined with a path findi
 | 0 | 0 | 0 | 0 | 1 | 1 |
 | 1 | 1 | 1 | null | null | null |
 
-In the above example the sensorimotor Inference Engine saw the sensory pattern (0, 0, ...) in the first timestep, sent the motor output of (0,1, ...) as a result, and received a new or resulting sensory input of (1,1...).
+In the above example the sensorimotor Inference Engine saw the sensory pattern (0, 0) in the first timestep, sent the motor output of (0, 1) as a result, and received a new or resulting sensory input of (1, 1).
 
 A memory structure of this design could be traversed by a path finding algorithm such that given any previously seen input, it could look for a path to any previously seen desired input. Just by executing the behaviors listed in this found path, the engine would travel the state space to manipulate the environment into conforming to the desired configuration.
 
@@ -55,17 +55,39 @@ Today's intelligent technology that manages environments typically do so by trai
 
 Instead, if 'rewards' are required for training at all the rewards must be fundamentally internal. For example, some work has been done on curiosity and attention training, some solutions may be found there.
 
-More fundamentally, perhaps, is the internally generated "will to power" to coopt a phrase from Nietzsche. Control, seems like the obvious choice as a metric of internally generated reward. Control can be quantified as the ability to predict the outcomes of behaviors, which requires the ability to predict the natural path of things (with no behavioral alteration). Thus it is fundamentally nothing more than pattern recognition through time (recognition of spatial patterns in the input space and patterns of spatial patterns through time).
+More fundamentally, perhaps, is the internally generated "will to power" to coopt a phrase from Nietzsche. Control, seems like the obvious choice as a metric of internally generated reward, after all, the more control the sensorimotor inference engine has over the environment the better it is at doing it's job of managing that environment. Control can be quantified as the ability to predict the outcomes of behaviors. Of course behaviors require a specific situation within specific contexts to be effective. What we typically call control, is probably better understood as predictability. And being able to predict the future merely means generalizing and extrapolating spatial-temporal patterns in varying degrees of spatial-temporal contexts. This long line of reasoning by redefinition serves only to help us conclude the following:
 
-to be continued...
+Our agent's impetus towards curiosity-guided behavior should be modulated by a metric of predictability. We wish to instill in the agent, this explicit advice, "recognize you don't understand something about the environment that effects the context in which your predictions are violated, and seek to find a better understanding of the environment, especially at that context." More generally, as the agent's ability to predict rises its impetus to curiosity, its impetus to chaotic behavior for learning sake, should fall. More complex predictability (control over more complex environment, or mastery) is the only reward.
+
+2. *Scaling requires Modularity:*
+
+Imagine you had an environment with an abundance of sensory information. You may need multiple agents just to take in all the information from the environment. This scaling requirement alone, means modularity is a must.
+
+Modularity requires the group to be an image of the individual + how individual's interact.
+
+(hierarchical invariance...)
+
+2. *Combinatorial Complexity requires Modularity:*
+
+The simple, naïve design described previously essentially fails to scale past environments that are more complex than simple toy examples. It could learn to play tic-tac-toe, it cannot even get close to solving a Rubik's Cube. This is not only because the naïve example isn't modular, but because it doesn't generalize (it memorizes explicit sensory input).
+
+Neural Networks have been shown to generalize extremely well, and beside them we have learned countless methods for generalization of patterns using statistical methods.
 
 
 (modularity)
-(hierarchical invariance...)
 (sensorimotor autoencoder...)
-(...)
 
-....
+must create a distributed view...
+nodes must know the shape of the network in order to know the distance of their connections in order to know the varience levels that matter the most. 
+
+
+# Design
+
+Having explored the theory behind the Sensorimotor Inference Engine, from it's simplest design to all the basic challenges and forces upon a genialized intelligent implementation we can hopefully now define our best guess at what a smart, general sensorimotor inference engine looks like:
+
+A network of autoencoders, who learn to represent moment to moment transitions at multiple levels of scale, both spatially and temporal who share their latents as inputs to each other, thereby forming a distributed view of how the environment operates which necessarily includes the mind itself as being part of the environment. this network is constantly reorienting itself to changes in the environment, meaning if in a deterministic environment the network connections will become very stable over time.
+
+to be continued....
 
 
 # Caution
