@@ -107,6 +107,22 @@ In order to achieve this, we need two things. First of all, each autoencoder (th
 
 What we are left with are a network of autoencoders, who learn to represent moment to moment transitions at multiple levels of scale, both spatially and temporal who share their compressed representations as inputs to each other, thereby forming a distributed view of how the environment operates which necessarily includes the group mind, itself, as being part of the environment. Each node in the network stands-in at various levels of multiple hierarchies as depicted by its particular set of learned connections. This network is constantly reorienting itself to changes in the environment, meaning if in a deterministic environment the network connections will become very stable over time.
 
+![Simple Fully Connected Sensorimotor Autoencoder Network](/images/simple-fully-connected.png)
+
+The above diagram shows a simple, 3-node sensorimotor autoencoder network. The colors and labels are for mere convenience.
+
+Each node is merely an autoencoder without any other functionality around mapping the network, forming and destroying connections to other nodes, because it is fully connected. Sensory data from the environment gets sent to each node in Timestep 0 and Timestep 1 so that the autoencoder can learn the transition from T0 to T1. The compressed representations for each autoencoder are all sent to each other autoencoder in the same manner. No node in this network see the entire environment state because they all have a partial view of the state, however, since this simple design is fully connected, each autoencoder is able to see a partially fuzzy representation of the entire scene by getting the compressed representations of it's neighbors.
+
+It is in the feedback loop with the environment as its compressed representation is directly applied to the environment as motor data. This too can be partial just as the input is a partial view. Each autoencoder is learning to predict their own, and their neighbors effect on the environment. The control for this Sensorimotor Autoencoder network isn't built in to the structure of this design. Nevertheless, the diagram hopefully serves as a help to understand the basic vision.
+
+![Basic Partially Connected Sensorimotor Autoencoder Network Example](/images/example-partially-connected.png)
+
+In this partially connected example it is shown that each node in the network is actually multiple autoencoders which compress the representation down by varying rates. It is also shown that each node has access to the map of all the connections of the network (including the input and output connections to the environment). Notice also, in this example that some nodes get no sensory input and by coincidence are also the only ones that send motor output information to the environment. This is an example of hierarchy - the nodes that don't see any sensory input directly get a fuzzy view of the network's interpretation of what's going on in the environment. In this example it is expected that the network will connect itself in such a way as to maximize every node's accuracy on predictions of its own future sensory input.
+
+Since each node has a map of the network, and each node compresses its input they can send the correct level of compression to the neighbors they're connected with. For instance, the green node, in this example, may send a finely detailed view (larger representation) to the red node, while also sending a highly compressed view (short representation) to the pink node since it shares less connections with the green node.
+
+This is just a contrived example, of course, but it should serve to help produce an understanding of the partially connected, more complicated vision of the idea.
+
 # Development Roadmap
 
 Conceivably the best way to develop and test the above design is to use a series of environments of increasing complexity. For instance, if a very simple environment can be managed by such a system to our satisfaction, then a more complex environment can be tested.
