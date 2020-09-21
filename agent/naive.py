@@ -1,4 +1,4 @@
 '''
 TODO
-implement the naive agent here as a benchmark for toy exmaples. 
+implement the naive agent here as a benchmark for toy exmaples.
 '''

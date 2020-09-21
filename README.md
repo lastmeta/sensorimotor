@@ -67,7 +67,7 @@ Our agent's impetus towards curiosity-guided behavior should be modulated by a m
 
 The simple, naïve design described previously essentially fails to scale past environments that are more complex than simple toy examples. It could learn to play tic-tac-toe, it cannot even get close to solving a Rubik's Cube. This is because the naïve example doesn't generalize (it memorizes explicit sensory input).
 
-Some environments have a large input space. For instance, the human body has billions of receptors acting as sensory input for the brain. The only way to handle such an environment is to have multiple nodes of perception which further communicate with each other. In other words, a modularity is a requirement for scale.
+Some environments have a large input space. For instance, the human body has billions of receptors acting as sensory input for the brain. The only way to handle such an environment is to have multiple nodes of perception which further communicate with each other. In other words, modularity is a requirement for scale.
 
 Thus a what is needed is a network of sensorimotor agents, communicating and working together to control the environment. Each node in the network, each agent should be nearly identical and doing essentially the same thing as all other nodes in the network, but have a unique set of connections so as to give it a unique view of the environment and of the group. It connections should overlap with others though.
 
@@ -83,15 +83,15 @@ Hierarchy is such a ubiquitous concept in any organized informational structure 
 
 # Conceptual Design
 
-Having explored the theory behind the Sensorimotor Inference Engine, from it's simplest design to all the basic challenges and forces upon a genialized intelligent implementation we can hopefully now define our best guess at what a smart, general sensorimotor inference engine looks like.
+Having explored the theory behind the Sensorimotor Inference Engine, from its simplest design to the basic challenges faced by a generalized intelligent implementation we can hopefully now define our best guess at what a smart, general sensorimotor inference engine looks like.
 
-Neural Networks have been shown to generalize extremely well. Luckily for us there is a simple neural network called an autoencoder that fits many of other requirements outlined above as well. An autoencoder produces a compressed image of its input. This is essential since in order to communicate with other autoencoders we need a smaller representation. Moreover the autoencoder can be made to encode the transition from one sensory-input to the next, making it a predictor of the future of any sensory input.
+Neural Networks have been shown to generalize extremely well. Luckily for us there is a simple neural network called an autoencoder that fits many of the other requirements outlined above as well. An autoencoder produces a compressed image of its input. This is essential since in order to communicate with other autoencoders we need a smaller representation. Moreover, the autoencoder can be made to encode the transition from one sensory-input to the next, making it a predictor of the future of any sensory input.
 
-If arranged in a hierarchy the mere prediction of top level nodes actually serve to bias and inform the behavior of lower level nodes: turning that prediction into a self fulfilling prophesy. Indeed, however, the top level nodes receive most of their information about what is going on in the environment as the aggregated summaries of lower level nodes, thus in aggregate the lower level nodes are able to affect the interpretation of the environment, effectively exerting influence over the entire network.
+If arranged in a hierarchy the mere prediction of top level nodes actually serve to bias and inform the behavior of lower level nodes: turning that prediction into a self-fulfilling prophecy. Indeed, however, the top level nodes receive most of their information about what is going on in the environment as the aggregated summaries of lower level nodes, thus in aggregate the lower level nodes are able to affect the interpretation of the environment, effectively exerting influence over the entire network.
 
 Indeed, though we can't make everything we need to out of this one type of neural network, it seems we're developing the idea of a *sensorimotor autoencoder* (which is actually a group of autoencoders working together to predict and thereby determine the future of the environment they interact with).
 
-What informs these connections between nodes? The implementation may be very complex but the question has already been answered - whatever connections allow a node to predict the future of its input stream better are the connections it forms.
+What informs these connections between nodes? The implementation may be very complex but the question has already been answered - whatever connections allow a node to predict the future of its input stream better, are the connections it forms.
 
 ## What about the Hierarchy?
 
@@ -101,7 +101,7 @@ Fortunately, there is a way that hierarchy can fall out of a flat network all on
 
 If, in the sensorimotor autoencoder network, we were able to identify distant connections we could listen to them at the appropriate rate of invariance. A distant connection, one that receives very different information about the environment can serve as a useful low resolution flag or indicator, while nodes that see some of the same inputs and are very similar can share higher resolution data because they all are familiar with the same patterns, the same context: they can talk shop with each other.
 
-In order to achieve this, we need two things. First of all, each autoencoder (that is each node) must actually be several autoencoders, encoding the input stream at various rates of compression. The smaller representations must be shared with 'further away' connections, the larger, more detailed, less compressed representations must be shared with 'near by' connections. Secondly, the nodes themselves must have a map of the network of nodes: they must know the shape of the network in order to know the distance of their connections... in order to know the correct variance levels to share. This shared map of connections should be difficult to define and distribute, but it is something in each node that stands apart from the neural net autoencoder.
+In order to achieve this, we need two things. First of all, each autoencoder (that is each node) must actually be several autoencoders, encoding the input stream at various rates of compression. The smaller representations must be shared with 'further away' connections, the larger, more detailed, less compressed representations must be shared with 'near by' connections. Secondly, the nodes themselves must have a map of the network of nodes: they must know the shape of the network in order to know the distance of their connections... in order to know the correct variance levels to share. This shared map of connections shouldn't be difficult to define and distribute, but it is something in each node that stands apart from the neural net autoencoder.
 
 ## Conceptual Design Overview
 
@@ -109,7 +109,7 @@ What we are left with are a network of autoencoders, who learn to represent mome
 
 # Development Roadmap
 
-Conceivably the best way to develop and test the above design is to use a series of environment of increasing complexity. For instance if a very simple environment can be managed by such a system to our satisfaction, then a more complex environment can be tested.
+Conceivably the best way to develop and test the above design is to use a series of environments of increasing complexity. For instance if a very simple environment can be managed by such a system to our satisfaction, then a more complex environment can be tested.
 
 We might start out with a number line, or some simple state space with few (linear) transitional steps, then move onto a 2d space with obstacles, finally, a Rubik's Cube may be sufficiently large a state space and transition space to satisfy all requirements, at least as far as deterministic environments are concerned. Non-deterministic environments should be able to be managed by a sufficiently intelligent Sensorimotor Inference Engine, however, the aim of this repository is first and foremost the development of a minimal viable general Sensorimotor Inference Engine, so non-deterministic environments, such as any multiplayer game (since another players actions are essentially undetermined) is beyond our scope at this time.
 
@@ -121,6 +121,6 @@ to be continued...
 
 # A Word of Caution
 
-Generalized Sensorimotor Inference Engines do not exit yet. We do have machines and computers and recommender systems and social media and ML technology and AI technology, but there is no ubiquitous general purpose Sensorimotor Inference Engine yet.
+Generalized Sensorimotor Inference Engines do not exist yet. We do have machines and computers and recommender systems and social media and ML technology and AI technology, but there is no ubiquitous general purpose Sensorimotor Inference Engine yet.
 
-If we make a machine explicitly designed to be able to control its environment we will be able to abstract many concerns away, and abundance will be the inevitable result. However, if we build a system capable of modeling (and if it is capable of modeling this, it will inevitably do so) the meta environment (the environment that contains "us telling it what to do") it will naturally aim to be able to control that environment as well. That seems like a precarious situation.
+If we make a machine explicitly designed to be able to control its environment we will be able to abstract many concerns away, and abundance will be the inevitable result. However, if we build a system capable of modeling (and if it is capable of modeling this, it will inevitably do so) the meta environment (the environment that contains "us telling it what to do") it will naturally aim to be able to control that environment as well. That seems like a precarious situation for the living.
