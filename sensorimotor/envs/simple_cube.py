@@ -5,31 +5,32 @@ np.set_printoptions(precision=8, suppress=True, linewidth=400, threshold=100)
 import gym
 
 
-class RubixCube(gym.Env):
+class SimpleCube(gym.Env):
+    ''' a RubixCube with only two colors. so that every face can be binary '''
     metadata = {'render.modes': ['human']}
     def __init__(self):
-        super(RubixCube, self).__init__()
+        super(SimpleCube, self).__init__()
         self.action_space = self._action_space()
         self.observation_space = self._observation_space()
         # should change the state to be a list of np array?
-        self.cube_state = {
-            1: 'top', 2: 'top', 3: 'top', 4: 'top',
-            5: 'top', 6: 'top', 7: 'top', 8: 'top',
-            9: 'left',
-            10: 'front', 11: 'front', 12: 'front',
-            13: 'right', 14: 'right', 15: 'right',
-            16: 'back', 17: 'back', 18: 'back',
-            19: 'left', 20: 'left', 21: 'left',
-            22: 'front', 23: 'front',
-            24: 'right', 25: 'right',
-            26: 'back', 27: 'back',
-            28: 'left', 29: 'left',
-            30: 'front', 31: 'front', 32: 'front',
-            33: 'right', 34: 'right', 35: 'right',
-            36: 'back', 37: 'back', 38: 'back',
-            39: 'left', 40: 'left',
-            41: 'under', 42: 'under', 43: 'under', 44: 'under',
-            45: 'under', 46: 'under', 47: 'under', 48: 'under'}
+        self.cube_state =[
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            0,
+            0, 0, 0,
+            1, 1, 1,
+            1, 1, 1,
+            0, 0, 0,
+            0, 0,
+            1, 1,
+            1, 1,
+            0, 0,
+            0, 0, 0,
+            1, 1, 1,
+            1, 1, 1,
+            0, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 0]
         self.solved_state = copy.deepcopy(self.cube_state)
         self.do_right = {
             3: 16, 16: 45, 45: 32, 32: 3,
@@ -89,10 +90,11 @@ class RubixCube(gym.Env):
 
     def _request(self, action):
         cube = copy.deepcopy(self.cube_state)
-        action = {
-            0: 'left', 1: 'right',
-            2: 'top', 3: 'under',
-            4: 'front', 5: 'back'}.get(action, None)
+        if isinstance(action, int):
+            action = {
+                0: 'left', 1: 'right',
+                2: 'top', 3: 'under',
+                4: 'front', 5: 'back'}.get(action, None)
         if action is not None:
             for k, v in eval(f'self.do_{action}').items():
                 self.cube_state[k] = cube[v]

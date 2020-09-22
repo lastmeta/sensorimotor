@@ -1,5 +1,4 @@
-## TODO import from envs... 
-
+## TODO import from envs...
 import copy
 import time
 import numpy as np
@@ -93,7 +92,8 @@ class SensorimotorAutoencoderAgents(object):
 
 
 if __name__ == '__main__':
-    env = RubixCube()
+    from sensorimotor.envs import SimpleCube
+    env = SimpleCube()
     env.seed(0)
     print("agent: env.action_space {}".format(env.action_space))
     agent = SensorimotorAutoencoderAgents(env)
