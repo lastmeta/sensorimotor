@@ -8,7 +8,7 @@ import gym
 class RubiksCube(gym.Env):
     metadata = {'render.modes': ['human']}
     def __init__(self):
-        super(RubixCube, self).__init__()
+        super(RubiksCube, self).__init__()
         self.action_space = self._action_space()
         self.observation_space = self._observation_space()
         # should change the state to be a list of np array?

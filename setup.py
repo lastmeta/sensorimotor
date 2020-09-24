@@ -31,7 +31,7 @@ setup(
     # scripts=[f for f in findall(dir='maestro/bin') if f.endswith('.py')],
     entry_points={
         "console_scripts": [
-            "sm = sensorimotor.cli.sensorimotor:main",
+            "sensorimotor = sensorimotor.cli.sensorimotor:main",
         ]
     },
 )

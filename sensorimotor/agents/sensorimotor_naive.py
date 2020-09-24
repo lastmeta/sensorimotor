@@ -31,7 +31,7 @@ class NaiveSensorimotor(object):
         start = start if start is not None else self.previous.name
         targets = anytree.search.findall(self.root, filter_=lambda node: node.name == target)
         shortest = None
-        shortest_length = 10000
+        shortest_length = 1_000_000
         for t in targets:
             i = 0
             found = False

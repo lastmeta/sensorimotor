@@ -6,7 +6,7 @@ import gym
 
 
 class SimpleCube(gym.Env):
-    ''' a RubixCube with only two colors. so that every face can be binary '''
+    ''' a Rubiks Cube with only two colors. so that every face can be binary '''
     metadata = {'render.modes': ['human']}
     def __init__(self):
         super(SimpleCube, self).__init__()
