@@ -1,16 +1,60 @@
 # Sensorimotor
 
+Learning how to control things so you don't have to.
+
+# Getting Started
+
+Install dependencies:
+
+```
+# if on windows, download sig from swig.org, extract, add to path, then continue...
+
+pip install -U gym[atari,box2d]
+pip install anytree
+pip install numpy
+
+# not needed for naive sensorimotor agent
+pip install tensorflow
+pip install keras
+```
+
+You will need to install the project:
+
+```
+git clone https://github.com/propername/sensorimotor.git
+cd sensorimotor
+python setup.py develop
+```
+
+Then you can spin up a jupyter notebook:
+
+```
+jupyter notebook
+```
+
+Navigate to the notebooks/demos folder and open the file named
+
+```
+Naive Agent in NumberLine
+```
+
+Follow the instructions in the notebook. Doing so should give the user an intuitive understanding of what a basic sensorimotor inference engine is.
+
+Once more complicated sensorimotor agents are developed more jupyter notebooks will be added.
+
+---
+
+# Theory
+
 A Sensorimotor Inference Engine is a certain kind of unsupervised machine learning agent that learns to move through or manipulate an environment it senses as input through controls such as motor output.
 
-It's key features are:
+The key features of any type of sensorimotor inference engine are:
 
 1. *Autonomous*: The agent is unsupervised as it learns the state space of the environment, through exploration, _without_ the imposition of external reward.
 2. *Controllable*: Once trained a sensorimotor inference engine deeply understands the environment it is in. In order to cause it to do useful work in the environment, it must be told what state it should put the environment in.
 3. *Modular*: In order to overcome scaling problems due to the combinatorial complexity inherent in most environments, it is thought that the Sensorimotor inference engine should be made up of many nearly identical memory/compute nodes connected in a way learned by the interactions the group of nodes has with the environment.
 
 A Sensorimotor Inference Engine can be thought of as a collection of agents that inherently learn to work together to manipulate the environment in order to learn (that is, with the inherent goal of learning) how the environment can be manipulated.
-
-# Theory
 
 A sensorimotor inference engine is a simple concept - it's a machine that learns how to interact with something (called the environment) so you don't have to. You merely let the machine explore the environment on its own, then you can tell the machine to put the environment in any particular state you wish and it will carry out an efficient set of behaviors to accomplish your goal. A Sensorimotor Inference Engine allows you to abstract entire systems away.
 

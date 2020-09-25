@@ -18,7 +18,11 @@ setup(
     long_description=get_long_description(),
     long_description_content_type="text/markdown",
     packages=[f'{get_name()}.{p}' for p in find_packages(where=get_name())],
-    install_requires=[],
+    install_requires=[
+        'numpy',
+        'anytree',
+        'gym[atari,box2d]',
+    ],
     python_requires='>=3.5.2',
     author='Jordan Miller',
     author_email="paradoxlabs@protonmail.com",

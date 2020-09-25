@@ -16,9 +16,6 @@ class NumberLine(gym.Env):
     def step(self, action):
         return self._request(action)
 
-    def reset(self):
-        return self._request(None)[0]
-
     def render(self, mode='human', close=False):
         action, obs, reward, done, info = self.env_state
         if action == None: print("{}\n".format(obs))
@@ -42,10 +39,25 @@ class NumberLine(gym.Env):
             action = {0: 0, 1: 1, 2: -1, 3: 10, 4: -9}.get(action, 0)
         else:
             action = 0
-        self.state = self.state + action
+        self.state +=  action
         obs = self.state
-        reward = np.float64(0.0)  # real AGI doesn't need spoonfed 'rewards'
+        reward = np.float64(0.0)  # real Intelligence doesn't need spoonfed 'rewards'
         done = False
         info = {}
         self.env_state = (action, obs, reward, done, info)
         return obs, reward, done, info
+
+    def reset(self, state=None):
+        if state is None:
+            return self._request(None)[0]
+        self.state = state
+        return state
+
+    def execute(self, actions):
+        for action in actions:
+            if isinstance(action, int):
+                action = {0: 0, 1: 1, 2: -1, 3: 10, 4: -9}.get(action, 0)
+            else:
+                action = 0
+            self.state += action
+        return self.state
