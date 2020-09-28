@@ -147,6 +147,8 @@ If, in the sensorimotor autoencoder network, we were able to identify distant co
 
 In order to achieve this, we need two things. First of all, each autoencoder (that is each node) must actually be several autoencoders, encoding the input stream at various rates of compression. The smaller representations must be shared with 'further away' connections, the larger, more detailed, less compressed representations must be shared with 'nearby' connections. Secondly, the nodes themselves must have a map of the network of nodes: they must know the shape of the network in order to know the distance of their connections... in order to know the correct variance levels to share. This shared map of connections shouldn't be difficult to define and distribute, but it is something in each node that stands apart from the neural net autoencoder.
 
+The purpose of the shared map of the network is to quickly disseminate information about which other node might want to connect with which other node at various rates of invariance. For instance, consider a node that gets data from a particular set of inputs. This node may use the map to know which other nodes have matching inputs. Our node can see what other inputs they have. He may, at random connect to a far away node (according to the map) which actually, at least in some times (in some contexts) has very highly correlated data with many of the inputs of this node - that is the information has high predictive power. The node may then issue a broadcast to the network (or to the central map server) that where it specifies that by it's calculation this other node is actually much closer than the map made by consensus says. Nearby nodes (with some of the same inputs) can then connect to nodes in that region to see if they can find better correlations with their data as well. Thus every node does not have to randomly brute force connections in order to find out which might be near optimal. once they have a map of the network that matches the interrelatedness of concepts they have the basis of reasoning by analogy. I believe predicting the change in the consented upon map is a meta prediction of the network and represents a hierarchy quite aside from the network hierarchy, (hierarchy defined by distance). This connection algorithm is high speculation, but it may serve as the basis for a possible solution to the problem of choosing better and better connections in a partially connected network.
+
 ## Conceptual Design Overview
 
 What we are left with are a network of autoencoders, who learn to represent moment to moment transitions at multiple levels of scale, both spatially and temporal who share their compressed representations as inputs to each other, thereby forming a distributed view of how the environment operates which necessarily includes the group mind, itself, as being part of the environment. Each node in the network stands-in at various levels of multiple hierarchies as depicted by its particular set of learned connections. This network is constantly reorienting itself to changes in the environment, meaning if in a deterministic environment the network connections will become very stable over time.
@@ -175,7 +177,21 @@ We might start out with a number line, or some simple state space with few (line
 
 OpenAI Gym https://gym.openai.com/ seems to serve as an ideal framework by which to develop environments that our network of agents can interact with.
 
-to be continued...
+Testing the algorithm is simple, but giving commands to a non-naive version is hard: this is a problem that will deserve more research.
+
+To test if the algorithm understands the environment you need only to know if it can predict the changes in the environment. Average prediction accuracy in the immediate future is one metric whereby agent can be judged. This is because it must take into account whatever it is sending to the motor output as having an affect on the environment, which means if it has a high prediction accuracy it understand how its behavior will mutate the environment in the environment's particular current hierarchical context.
+
+Beyond that we want to know how well it does at pathfinding a goal: both states of the environment it has seen exactly to things an explicit memory could partially match on to brand new, chaotic patterns. we also need to test it's predictions through longer periods of time. To do so we have to be able to give the agent a goal.
+
+Giving agents goals seems like a very difficult thing. There may be simple ways to solve this problem though. Like a Generative Adversarial Network you may be able to play two agents off one another to retain intelligent control of the two. You may be able to deduce all information needed to control the mind from the map, even if its a recursive one.
+
+Ultimately, however, one must be able to, as one can with the naïve version, show it a vision of the goal state of the environment as a goal. The language spoken to the agent is the language it has learned by interacting with the environment. In a non-naïve version I think you must provide this vision at the top of the hierarchy and allow it to cascade it's own solution to producing this vision down the hierarchy. Intelligence is really all about knowing when to optimize. Its efficient compression.
+
+The first step is to establish a benchmark for the naïve version. Given a unit of time training, how big of environments is it able to memorize or handle? Where are the boundaries of it's limitations? If it memorizes the entire state and transition space we know it's predictions are perfect. so we don't have to care so much about accuracy. The real useful benchmark at this stage is just, what kind of environments is it able to manipulate upon command?
+
+The first goal is to achieve a sensorimotor autoencoder that is on par with the naïve version in so far as being able to handle (or at least predict) the same size of environments. This may be able to be accomplished with fully connected network, at least for short timescale goals.
+
+Beyond that it becomes a matter of scaling up the intelligent solution in the general way. 
 
 ---
 
