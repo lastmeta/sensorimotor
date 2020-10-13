@@ -1,4 +1,6 @@
-''' implementation of the naive agent as a benchmark for toy exmaples '''
+'''
+implementation of the naive agent as a benchmark for toy exmaples
+'''
 
 import anytree
 

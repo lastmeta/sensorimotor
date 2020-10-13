@@ -21,7 +21,7 @@ pip install keras
 You will need to install the project:
 
 ```
-git clone https://github.com/propername/sensorimotor.git
+git clone https://github.com/lastmeta/sensorimotor.git
 cd sensorimotor
 python setup.py develop
 ```
@@ -41,6 +41,16 @@ Naive Agent in NumberLine
 Follow the instructions in the notebook. Doing so should give the user an intuitive understanding of what a basic sensorimotor inference engine is.
 
 Once more complicated sensorimotor agents are developed more jupyter notebooks will be added.
+
+---
+
+# Community
+
+Refer to the discussions which brought about this project for more a in-depth background:
+
+https://discourse.numenta.org/t/a-sensorimotor-machine-proof-of-concept-with-existing-tech/7891/10
+
+https://www.reddit.com/r/agi/comments/iwenw8/looking_for_someone_interested_in_making_agi_to/
 
 ---
 
@@ -191,7 +201,7 @@ The first step is to establish a benchmark for the naïve version. Given a unit 
 
 The first goal is to achieve a sensorimotor autoencoder that is on par with the naïve version in so far as being able to handle (or at least predict) the same size of environments. This may be able to be accomplished with fully connected network, at least for short timescale goals.
 
-Beyond that it becomes a matter of scaling up the intelligent solution in the general way. 
+Beyond that it becomes a matter of scaling up the intelligent solution in the general way.
 
 ---
 

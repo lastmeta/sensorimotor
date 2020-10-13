@@ -26,7 +26,7 @@ setup(
     python_requires='>=3.5.2',
     author='Jordan Miller',
     author_email="paradoxlabs@protonmail.com",
-    url="https://github.com/propername/maestro",
+    url="https://github.com/lastmeta/maestro",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache Software License",

@@ -1,4 +1,30 @@
-## TODO import from envs...
+'''
+
+Sensorimotor Autoencoder fully-connected network.
+
+TODO:
+
+refering to the diagram in the readme we have a logistical problem of wiring up
+the example fully connected 3-node sensorimotor autoencoder network. the
+problem is that each node, listed R, G, B gets the latents from the other nodes
+as part of it's input. This cannot be done with just 3 autoencoders. in order
+to do this we must either allow them to get t1 input and t2 input on the right
+side, which is probably the better choice. the other choice is to put 3
+autoencoder networks in each node. the first would just get input from the env
+the second would get input from the env and the other nodes first autoencoders,
+and the third would get the input from the environment, and the other nodes 2nd
+autoencoders...
+
+aside from the above logistical problem with the example design of a fully
+connected network, we also have the more difficult problem of evaluating the
+progress of the agents and furthermore being able to issue commands at their
+top most levels.
+
+missing is curiosity and the need for stability. these must be innate, so they
+have to be something that comes from the interaction of the group.
+'''
+
+
 import copy
 import time
 import numpy as np
@@ -6,7 +32,7 @@ np.set_printoptions(precision=8, suppress=True, linewidth=400, threshold=100)
 import gym
 
 
-class SensorimotorAutoencoderAgents(object):
+class SensorimotorAutoencoderSimpleAgents(object):
     '''
     a group of autoencoders, each with the ability to encode one transition
     that work together to form a predictive sensorimotor inference engine.
