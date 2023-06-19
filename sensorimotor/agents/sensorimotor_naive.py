@@ -2,8 +2,8 @@
 implementation of the naive agent as a benchmark for toy exmaples
 '''
 
+import time
 import anytree
-
 
 class NaiveSensorimotor(object):
     ''' suitable for small, simple environments. uses a tree - explicit memory '''
@@ -16,7 +16,7 @@ class NaiveSensorimotor(object):
 
 
     def memorize(self, obs):
-        ''' every time I see an observation addd it to the tree pointing to the previous one '''
+        ''' every time I see an observation add it to the tree pointing to the previous one '''
         if self.previous and not isinstance(self.previous, int):
             node = anytree.Node(obs, parent=self.previous, edge=self.action)
         self.previous = node
@@ -32,8 +32,7 @@ class NaiveSensorimotor(object):
         def remove_do_nothings(actions, do_nothing=None):
             return [a for a in actions if a != do_nothing]
 
-        start = start if start is not None else (
-            self.previous if isinstance(self.previous, int) else self.previous.name)
+        start = start or (self.previous if isinstance(self.previous, int) else self.previous.name)
         targets = anytree.search.findall(self.root, filter_=lambda node: node.name == target)
         shortest = None
         shortest_length = 1_000_000
@@ -67,3 +66,16 @@ class NaiveSensorimotor(object):
         if verbose:
             print(actions)
         return self.env.execute(actions=actions)
+
+    def train(self, epocs=1, steps=1000, verbose=False):
+        for _ in range(epocs):
+            obs = self.env.reset()
+            if verbose:
+                self.env.render()
+            for _ in range(steps):
+                action = self.random_step(obs)
+                obs, _reward, _done, _info = self.env.step(action)
+                if verbose:
+                    # notice its moving through the environment state-space...
+                    time.sleep(.001)
+                    print(obs, end='\r')
