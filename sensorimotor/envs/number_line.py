@@ -7,6 +7,7 @@ import gym
 class NumberLine(gym.Env):
     ''' the agent can move back and forth on the number line '''
     metadata = {'render.modes': ['human']}
+
     def __init__(self):
         super(NumberLine, self).__init__()
         self.action_space = self._action_space()
@@ -18,8 +19,11 @@ class NumberLine(gym.Env):
 
     def render(self, mode='human', close=False):
         action, obs, reward, done, info = self.env_state
-        if action == None: print("{}\n".format(obs))
-        else: print("{}\t\t--> {:.18f}{}\n{}\n".format(action, reward, (' DONE!' if done else ''), obs))
+        if action == None:
+            print("{}\n".format(obs))
+        else:
+            print("{}\t\t--> {:.18f}{}\n{}\n".format(action,
+                  reward, (' DONE!' if done else ''), obs))
 
     def _action_space(self):
         '''
@@ -39,9 +43,10 @@ class NumberLine(gym.Env):
             action = {0: 0, 1: 1, 2: -1, 3: 10, 4: -9}.get(action, 0)
         else:
             action = 0
-        self.state +=  action
+        self.state += action
         obs = self.state
-        reward = np.float64(0.0)  # real Intelligence doesn't need spoonfed 'rewards'
+        # real Intelligence doesn't need spoonfed 'rewards'
+        reward = np.float64(0.0)
         done = False
         info = {}
         self.env_state = (action, obs, reward, done, info)

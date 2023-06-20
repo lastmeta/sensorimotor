@@ -14,14 +14,14 @@ def get_version():
 setup(
     name=get_name(),
     version=get_version(),
-    description='development of a sensorimotor inference engine; a distributed collaboration framework',
+    description='development of a sensorimotor inference engine; a collaboration',
     long_description=get_long_description(),
     long_description_content_type="text/markdown",
     packages=[f'{get_name()}.{p}' for p in find_packages(where=get_name())],
     install_requires=[
         'numpy',
         'anytree',
-        'gym[atari,box2d]',
+        'gym[atari]',
     ],
     python_requires='>=3.5.2',
     author='Jordan Miller',

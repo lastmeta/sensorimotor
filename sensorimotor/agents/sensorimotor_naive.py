@@ -5,15 +5,25 @@ implementation of the naive agent as a benchmark for toy exmaples
 import time
 import anytree
 
+
 class NaiveSensorimotor(object):
     ''' suitable for small, simple environments. uses a tree - explicit memory '''
 
-    def __init__(self, env):
+    def __init__(self, env, state=None):
         self.env = env
         self.root = anytree.Node('root')
         self.previous = self.root
         self.action = 0
+        if state is not None:
+            self.seed(state)
 
+    def seed(self, state):
+        ''' the first state '''
+        if self.previous == self.root:
+            self.memorize(state)
+        else:
+            self.reset('root')
+            self.memorize(state)
 
     def memorize(self, obs):
         ''' every time I see an observation add it to the tree pointing to the previous one '''
@@ -32,8 +42,10 @@ class NaiveSensorimotor(object):
         def remove_do_nothings(actions, do_nothing=None):
             return [a for a in actions if a != do_nothing]
 
-        start = start or (self.previous if isinstance(self.previous, int) else self.previous.name)
-        targets = anytree.search.findall(self.root, filter_=lambda node: node.name == target)
+        start = start or (self.previous if isinstance(
+            self.previous, int) else self.previous.name)
+        targets = anytree.search.findall(
+            self.root, filter_=lambda node: node.name == target)
         shortest = None
         shortest_length = 1_000_000
         for t in targets:
@@ -67,10 +79,10 @@ class NaiveSensorimotor(object):
             print(actions)
         return self.env.execute(actions=actions)
 
-    def train(self, epocs=1, steps=1000, verbose=False):
+    def train(self, epocs=1, steps=1000, verbose=False, extraVerbose=False):
         for _ in range(epocs):
             obs = self.env.reset()
-            if verbose:
+            if extraVerbose:
                 self.env.render()
             for _ in range(steps):
                 action = self.random_step(obs)
