@@ -42,4 +42,5 @@ CMD ["jupyter","lab","--ip=*","--port=8888","--no-browser","--ServerApp.iopub_da
 # how to build
 # docker build --no-cache -t satorinet/sensorimotor:v1 .
 # docker push satorinet/sensorimotor:v1
+# docker run --rm -it --name sensorimotor -p 8888:8888 satorinet/sensorimotor:v1
 # docker run --rm -it --name sensorimotor -p 8888:8888 -v c:\repos\sensorimotor:/sensorimotor satorinet/sensorimotor:v1 jupyter lab --ip=* --port=8888 --no-browser --ServerApp.iopub_data_rate_limit=10000000 --notebook-dir=/sensorimotor --allow-root
