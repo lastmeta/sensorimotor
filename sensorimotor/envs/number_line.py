@@ -38,6 +38,14 @@ class NumberLine(gym.Env):
     def _observation_space(self):
         return gym.spaces.Box(low=np.NINF, high=np.inf, shape=(1,), dtype=np.int64)
 
+    def _encode(self, item):
+        ''' accepts a binary string of a certain size and returns int action '''
+        return int(item, 2)
+
+    def _decode(self, item):
+        ''' accepts an integer and returns an binary representation of it.'''
+        return bin(item)[2:]
+
     def _request(self, action):
         if isinstance(action, int):
             action = {0: 0, 1: 1, 2: -1, 3: 10, 4: -9}.get(action, 0)
