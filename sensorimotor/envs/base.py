@@ -1,6 +1,6 @@
 '''
     agents communicate in binary strings (motor output, actions)
-    environments communictae in binary strings (state rep, observaiton)
+    todo: environments communictae in binary strings (state rep, observaiton)
 '''
 
 
