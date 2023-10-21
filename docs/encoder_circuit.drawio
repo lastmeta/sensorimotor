@@ -1,16 +1,16 @@
 <mxfile host="65bd71144e">
     <diagram id="Ls6ZZ3JOabP0Mv-Qpzl1" name="Page-1">
-        <mxGraphModel dx="1388" dy="419" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="887" dy="607" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="34" value="context" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" vertex="1" parent="1">
+                <mxCell id="34" value="context" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
                     <mxGeometry x="660" y="520" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="99" value="context" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" vertex="1" parent="1">
+                <mxCell id="99" value="context" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
                     <mxGeometry x="660" y="240" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="39" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="5" target="31">
+                <mxCell id="39" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="5" target="31" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="180" y="660"/>
@@ -19,13 +19,13 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="2" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=90;" vertex="1" parent="1">
+                <mxCell id="2" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=90;" parent="1" vertex="1">
                     <mxGeometry x="50" y="550" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=-90;" vertex="1" parent="1">
+                <mxCell id="3" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=-90;" parent="1" vertex="1">
                     <mxGeometry x="190" y="550" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="122" value="current &amp;amp; prior&lt;br&gt;(meta-state)" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="124" target="86">
+                <mxCell id="122" value="current &amp;amp; prior&lt;br&gt;(meta-state)" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="124" target="86" edge="1">
                     <mxGeometry x="-0.3716" relative="1" as="geometry">
                         <mxPoint x="20" y="270" as="targetPoint"/>
                         <Array as="points">
@@ -37,10 +37,10 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="5" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="5" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="140" y="560" width="80" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="37" style="edgeStyle=elbowEdgeStyle;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;elbow=vertical;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;" edge="1" parent="1" source="7" target="2">
+                <mxCell id="37" style="edgeStyle=elbowEdgeStyle;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;elbow=vertical;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;" parent="1" source="7" target="2" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="30" y="810" as="targetPoint"/>
                         <Array as="points">
@@ -49,7 +49,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="38" style="edgeStyle=orthogonalEdgeStyle;elbow=vertical;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;" edge="1" parent="1" source="7" target="15">
+                <mxCell id="38" style="edgeStyle=orthogonalEdgeStyle;elbow=vertical;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;" parent="1" source="7" target="15" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="40" y="830"/>
@@ -59,76 +59,76 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="144" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" edge="1" parent="1" source="7" target="143">
+                <mxCell id="144" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" parent="1" source="7" target="143" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" value="Environment" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="7" value="Environment" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="185" y="800" width="480" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="158" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=11;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="5" target="124">
+                <mxCell id="158" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=11;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="5" target="124" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="180" y="550" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="10" value="&lt;b&gt;Encoder&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="10" value="&lt;b&gt;Encoder&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="150" y="565" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=90;" vertex="1" parent="1">
+                <mxCell id="15" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=90;" parent="1" vertex="1">
                     <mxGeometry x="290" y="550" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="17" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="17" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="380" y="560" width="80" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="18" value="&lt;b&gt;Predictor&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="18" value="&lt;b&gt;Predictor&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="390" y="565" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="23" value="goal" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="23" value="goal" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="420" y="520" width="40" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="30" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.polygon;polyCoords=[[0,0],[1,0],[1,0.4],[1,0.73],[1,1],[1,1],[0,0.67],[0,0]];polyline=1;fillColor=default;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="30" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.polygon;polyCoords=[[0,0],[1,0],[1,0.4],[1,0.73],[1,1],[1,1],[0,0.67],[0,0]];polyline=1;fillColor=default;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="460" y="520" width="60" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=90;" vertex="1" parent="1">
+                <mxCell id="31" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=90;" parent="1" vertex="1">
                     <mxGeometry x="550" y="550" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="32" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="32" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="640" y="560" width="80" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="33" value="&lt;b&gt;*Actor&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="33" value="&lt;b&gt;*Actor&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="650" y="565" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="35" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.polygon;polyCoords=[[0,0],[1,0],[1,0.4],[1,0.73],[1,1],[1,1],[0,0.67],[0,0]];polyline=1;fillColor=default;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="35" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.polygon;polyCoords=[[0,0],[1,0],[1,0.4],[1,0.73],[1,1],[1,1],[0,0.67],[0,0]];polyline=1;fillColor=default;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="720" y="520" width="60" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="52" value="&amp;nbsp;optional&amp;nbsp;" style="endArrow=classic;html=1;elbow=vertical;endFill=1;dashed=1;" edge="1" parent="1">
+                <mxCell id="52" value="&amp;nbsp;optional&amp;nbsp;" style="endArrow=classic;html=1;elbow=vertical;endFill=1;dashed=1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="70" y="980" as="sourcePoint"/>
                         <mxPoint x="160" y="980" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="53" value="&amp;nbsp;raw state&amp;nbsp;" style="endArrow=classic;html=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;endFill=1;" edge="1" parent="1">
+                <mxCell id="53" value="&amp;nbsp;raw state&amp;nbsp;" style="endArrow=classic;html=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;endFill=1;" parent="1" edge="1">
                     <mxGeometry x="0.0032" width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="70" y="1020" as="sourcePoint"/>
                         <mxPoint x="160" y="1020" as="targetPoint"/>
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="54" value="&amp;nbsp;encoded&amp;nbsp;" style="endArrow=classic;html=1;elbow=vertical;fillColor=#d5e8d4;gradientColor=#97d077;strokeColor=#82b366;endFill=1;" edge="1" parent="1">
+                <mxCell id="54" value="&amp;nbsp;encoded&amp;nbsp;" style="endArrow=classic;html=1;elbow=vertical;fillColor=#d5e8d4;gradientColor=#97d077;strokeColor=#82b366;endFill=1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="70" y="1040" as="sourcePoint"/>
                         <mxPoint x="160" y="1040" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="55" value="current&lt;br&gt;state&lt;br&gt;encoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="55" value="current&lt;br&gt;state&lt;br&gt;encoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="320" y="560" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="56" value="next&lt;br&gt;state&lt;br&gt;decoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="56" value="next&lt;br&gt;state&lt;br&gt;decoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="460" y="560" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="78" value="encoded&lt;br&gt;current &amp;amp;&lt;br&gt;next" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="78" value="encoded&lt;br&gt;current &amp;amp;&lt;br&gt;next" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="580" y="560" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="80" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;elbow=vertical;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;" edge="1" parent="1" source="79" target="7">
+                <mxCell id="80" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;elbow=vertical;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;" parent="1" source="79" target="7" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="820" y="580"/>
@@ -136,16 +136,16 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="79" value="motor output" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="79" value="motor output" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="720" y="560" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="81" value="&amp;nbsp;motor out" style="endArrow=classic;html=1;elbow=vertical;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;endFill=1;" edge="1" parent="1">
+                <mxCell id="81" value="&amp;nbsp;motor out" style="endArrow=classic;html=1;elbow=vertical;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;endFill=1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="70" y="1060" as="sourcePoint"/>
                         <mxPoint x="160" y="1060" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="82" value="&amp;nbsp;to neighbors&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;html=1;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;exitX=0.25;exitY=0;exitDx=0;exitDy=0;endArrow=none;endFill=0;dashed=1;" edge="1" parent="1" source="5">
+                <mxCell id="82" value="&amp;nbsp;to neighbors&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;html=1;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;exitX=0.25;exitY=0;exitDx=0;exitDy=0;endArrow=none;endFill=0;dashed=1;" parent="1" source="5" edge="1">
                     <mxGeometry x="0.6154" relative="1" as="geometry">
                         <mxPoint x="140" y="330" as="sourcePoint"/>
                         <mxPoint y="480" as="targetPoint"/>
@@ -155,7 +155,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="83" value="&amp;nbsp;from neighbors&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;html=1;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;endArrow=classic;endFill=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" target="34">
+                <mxCell id="83" value="&amp;nbsp;from neighbors&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;html=1;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;endArrow=classic;endFill=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" parent="1" target="34" edge="1">
                     <mxGeometry x="-0.5238" relative="1" as="geometry">
                         <mxPoint x="840" y="480" as="sourcePoint"/>
                         <mxPoint x="590" y="340" as="targetPoint"/>
@@ -165,7 +165,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="84" value="&amp;nbsp;from neighbors&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;html=1;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;endArrow=classic;endFill=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" target="34">
+                <mxCell id="84" value="&amp;nbsp;from neighbors&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;html=1;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;endArrow=classic;endFill=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;dashed=1;" parent="1" target="34" edge="1">
                     <mxGeometry x="-0.4595" relative="1" as="geometry">
                         <mxPoint x="840" y="490" as="sourcePoint"/>
                         <mxPoint x="680" y="520" as="targetPoint"/>
@@ -175,7 +175,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="85" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="88" target="96">
+                <mxCell id="85" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="88" target="96" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="180" y="380"/>
@@ -184,74 +184,74 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="86" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=90;" vertex="1" parent="1">
+                <mxCell id="86" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=90;" parent="1" vertex="1">
                     <mxGeometry x="50" y="270" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="87" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=-90;" vertex="1" parent="1">
+                <mxCell id="87" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=-90;" parent="1" vertex="1">
                     <mxGeometry x="190" y="270" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="128" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;dashed=1;" edge="1" parent="1" source="88">
+                <mxCell id="128" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;dashed=1;" parent="1" source="88" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="180" y="160" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="88" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="88" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="140" y="280" width="80" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="89" value="&lt;b&gt;Encoder&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="89" value="&lt;b&gt;Encoder&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="150" y="285" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="90" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=90;" vertex="1" parent="1">
+                <mxCell id="90" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=90;" parent="1" vertex="1">
                     <mxGeometry x="290" y="270" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="91" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="91" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="380" y="280" width="80" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="92" value="&lt;b&gt;Predictor&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="92" value="&lt;b&gt;Predictor&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="390" y="285" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="93" value="goal" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="93" value="goal" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="420" y="240" width="40" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="94" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;elbow=vertical;fillColor=#d5e8d4;gradientColor=#97d077;strokeColor=#82b366;startArrow=none;exitX=1.007;exitY=0.249;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="95" target="96">
+                <mxCell id="94" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;elbow=vertical;fillColor=#d5e8d4;gradientColor=#97d077;strokeColor=#82b366;startArrow=none;exitX=1.007;exitY=0.249;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="95" target="96" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="95" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.polygon;polyCoords=[[0,0],[1,0],[1,0.4],[1,0.73],[1,1],[1,1],[0,0.67],[0,0]];polyline=1;fillColor=default;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="95" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.polygon;polyCoords=[[0,0],[1,0],[1,0.4],[1,0.73],[1,1],[1,1],[0,0.67],[0,0]];polyline=1;fillColor=default;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="460" y="240" width="60" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="96" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=90;" vertex="1" parent="1">
+                <mxCell id="96" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=40;rotation=90;" parent="1" vertex="1">
                     <mxGeometry x="550" y="270" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="97" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="97" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="640" y="280" width="80" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="98" value="&lt;b&gt;*Actor&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="98" value="&lt;b&gt;*Actor&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="650" y="285" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="100" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.polygon;polyCoords=[[0,0],[1,0],[1,0.4],[1,0.73],[1,1],[1,1],[0,0.67],[0,0]];polyline=1;fillColor=default;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="100" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.polygon;polyCoords=[[0,0],[1,0],[1,0.4],[1,0.73],[1,1],[1,1],[0,0.67],[0,0]];polyline=1;fillColor=default;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="720" y="240" width="60" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="101" value="current&lt;br&gt;meta-state&lt;br&gt;encoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="101" value="current&lt;br&gt;meta-state&lt;br&gt;encoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="320" y="280" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="102" value="next&lt;br&gt;meta-state&lt;br&gt;decoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="102" value="next&lt;br&gt;meta-state&lt;br&gt;decoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="460" y="280" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="103" value="encoded&lt;br&gt;meta&lt;br&gt;current &amp;amp;&lt;br&gt;next" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="103" value="encoded&lt;br&gt;meta&lt;br&gt;current &amp;amp;&lt;br&gt;next" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="580" y="280" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="104" value="motor output" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="104" value="motor output" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="720" y="280" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="108" value="current&lt;br&gt;state&lt;br&gt;encoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="108" value="current&lt;br&gt;state&lt;br&gt;encoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="80" y="560" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="110" value="current&lt;br&gt;state&lt;br&gt;decoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="110" value="current&lt;br&gt;state&lt;br&gt;decoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="220" y="560" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="111" style="edgeStyle=orthogonalEdgeStyle;html=1;elbow=vertical;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="100" target="23">
+                <mxCell id="111" style="edgeStyle=orthogonalEdgeStyle;html=1;elbow=vertical;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="100" target="23" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="780" y="300" as="sourcePoint"/>
                         <mxPoint x="600" y="510" as="targetPoint"/>
@@ -262,13 +262,13 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="115" value="&amp;nbsp;data flow&amp;nbsp;" style="endArrow=classic;html=1;elbow=vertical;endFill=1;" edge="1" parent="1">
+                <mxCell id="115" value="&amp;nbsp;data flow&amp;nbsp;" style="endArrow=classic;html=1;elbow=vertical;endFill=1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="70" y="960" as="sourcePoint"/>
                         <mxPoint x="160" y="960" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="119" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;endArrow=classic;endFill=1;elbow=vertical;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;" edge="1" parent="1" source="117" target="93">
+                <mxCell id="119" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;endArrow=classic;endFill=1;elbow=vertical;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;" parent="1" source="117" target="93" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="360" y="160"/>
@@ -276,19 +276,19 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="117" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="117" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="320" y="80" width="80" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="118" value="&lt;b&gt;Trainer&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="118" value="&lt;b&gt;Trainer&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="330" y="85" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="120" value="current&lt;br&gt;meta-state&lt;br&gt;encoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="120" value="current&lt;br&gt;meta-state&lt;br&gt;encoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="80" y="280" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="121" value="current&lt;br&gt;meta-state&lt;br&gt;decoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="121" value="current&lt;br&gt;meta-state&lt;br&gt;decoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="220" y="280" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="155" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;dashed=1;dashPattern=1 1;" edge="1" parent="1" source="124" target="121">
+                <mxCell id="155" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;dashed=1;dashPattern=1 1;" parent="1" source="124" target="121" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="180" y="400"/>
@@ -297,7 +297,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="156" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" edge="1" parent="1" source="124" target="101">
+                <mxCell id="156" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" parent="1" source="124" target="101" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="180" y="400"/>
@@ -306,7 +306,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="157" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;dashed=1;dashPattern=1 1;" edge="1" parent="1" source="124" target="102">
+                <mxCell id="157" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;dashed=1;dashPattern=1 1;" parent="1" source="124" target="102" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="180" y="400"/>
@@ -315,10 +315,10 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="124" value="memory module" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="124" value="memory module" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="140" y="430" width="80" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="125" value="&amp;nbsp;from neighbors&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;html=1;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;endArrow=classic;endFill=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" target="99">
+                <mxCell id="125" value="&amp;nbsp;from neighbors&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;html=1;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;endArrow=classic;endFill=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" parent="1" target="99" edge="1">
                     <mxGeometry x="-0.5238" relative="1" as="geometry">
                         <mxPoint x="840" y="200.0000000000001" as="sourcePoint"/>
                         <mxPoint x="670" y="240" as="targetPoint"/>
@@ -328,7 +328,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="126" value="&amp;nbsp;from neighbors&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;html=1;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;endArrow=classic;endFill=1;dashed=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="99">
+                <mxCell id="126" value="&amp;nbsp;from neighbors&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;html=1;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;endArrow=classic;endFill=1;dashed=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="1" target="99" edge="1">
                     <mxGeometry x="-0.4595" relative="1" as="geometry">
                         <mxPoint x="840" y="210.0000000000001" as="sourcePoint"/>
                         <mxPoint x="620" y="190" as="targetPoint"/>
@@ -338,7 +338,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="127" value="&amp;nbsp;to neighbors&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;html=1;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;exitX=0.25;exitY=0;exitDx=0;exitDy=0;endArrow=none;endFill=0;dashed=1;" edge="1" parent="1">
+                <mxCell id="127" value="&amp;nbsp;to neighbors&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;html=1;elbow=vertical;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;exitX=0.25;exitY=0;exitDx=0;exitDy=0;endArrow=none;endFill=0;dashed=1;" parent="1" edge="1">
                     <mxGeometry x="0.6154" relative="1" as="geometry">
                         <mxPoint x="160.00000000000023" y="280" as="sourcePoint"/>
                         <mxPoint y="200.0000000000001" as="targetPoint"/>
@@ -348,10 +348,10 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="130" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="130" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="480" y="80" width="80" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="133" value="or" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;endArrow=classic;endFill=1;elbow=vertical;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;" edge="1" parent="1" source="130" target="93">
+                <mxCell id="133" value="or" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;endArrow=classic;endFill=1;elbow=vertical;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;" parent="1" source="130" target="93" edge="1">
                     <mxGeometry x="0.5" relative="1" as="geometry">
                         <mxPoint x="540" y="140" as="sourcePoint"/>
                         <Array as="points">
@@ -361,13 +361,13 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="131" value="&lt;b&gt;User&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="131" value="&lt;b&gt;User&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="490" y="85" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="134" value="&lt;h1&gt;The EPA Circuit&lt;/h1&gt;&lt;p&gt;The &lt;b&gt;Environment &lt;/b&gt;is an environment. It is a game, or a world. It is a function that produces the sensory input that the Sensorimotor Inference Engine learns to manipulate through motor commands. The Agent is in a sensorimotor feedback loop with the environment. Environments range from small to large (so many states and transitions they cannot all be explored let alone recorded), simple to complex (highly integrated), and fully observable (deterministic, markov compliant, the agent is the one actor) to partially observable (generally because there are other actors in the environment or it cannot all be observed for some other reason). For small, simple, fully observable envirnments a naive agent works fine. In partially observable, or complex, or large environments AI or probablistic models are required.&lt;/p&gt;&lt;p&gt;The&lt;b&gt; &lt;u&gt;Encoder&lt;/u&gt; &lt;/b&gt;is a&lt;b&gt;&amp;nbsp;&lt;/b&gt;simple autoencoder. We first encode the raw state so as to produce a compressed representation of it in the context of all observed states. That encoded representation of the current state gets passed up the hierarchy, as the next level's raw state input (as each layer views all the layers below it as part of the environment). We also pass that encoded state to the Actor for later use. We furthermore can pass our representation to our neighbors if we are a multi-agent system and if it makes sense to do so. The encoder is easy to train, as it is a simple autoencoder, however, near by states must have unique representations so it cannot compress the data too much.&lt;/p&gt;&lt;p&gt;The &lt;b&gt;&lt;u&gt;Predictor&lt;/u&gt;&lt;/b&gt;&amp;nbsp;uses as its error metric the next observed state so that given the current state, it learns to predict the next one. However, from any given state of an environment the agent may be able to go to any one of multiple other states based on its motor output (which is yet to be determined, at this point), so in order to predict the 'correct' next state, it is given a goal (which is the motor output of the layer above) to indicate which, of the multiple states that it can go to, it should predict. Once the next state is predicted, in it's fully raw explicit form, it will be run through the encoder and the compressed representation of that state will be fed to the Actor. The Predictor is harder to train than the Encoder because it must be trained across iterations in the sensorimotor loop since it needs to know the next state that occured in order to complete its training.&lt;/p&gt;&lt;p&gt;The &lt;b&gt;&lt;u&gt;Actor&lt;/u&gt;&lt;/b&gt;&amp;nbsp;accepts the compressed representations of both the current state, and the predicted (goal) state. It's job is to learn the motor output that represents the transition from the current state to the predicted state. It will output that motor behavior to the environment in order to make the desired change in the environment occur. It can be given, at its decoding input a compressed representation of other areas of the environmnet which it can only partially see, or cannot see at all. This would be of use in a multi-agent scenario such as assigning an agent to each side of a rubiks cube, allowing each agent to know something about adjacent sides and thereby getting a better picture of the parts of the environment it can affect. The Agent is the hardest model to train as the specific motor output is never explicitly known unless it is guessed. The environment's feedback is, most simply, binary as the motor output provided to it either produces the goal state or does not. This binary answer is, at base, the information it must use to train its network. *It has an asterisk for this purpose; it may need complex training to work with any amount of efficiency, but it is a paramount component to the system because without it no hierarchy can be maintained.&lt;/p&gt;&lt;p&gt;The &lt;b&gt;Memory Module &lt;/b&gt;is a simple data store that keeps track of past states and provides it on demand. It is used to generate models in higher layers that span multiple transformations of the environment state.&lt;/p&gt;&lt;p&gt;The &lt;b&gt;Layers &lt;/b&gt;are almost identical, but the second differs from the first in only one way: the first maps individual states of the environment state space and their transitions. All the Layers above the lowest layer map multiple states in order to take a broader view of both space and time into account. The way the spatial dimension would be taken into account is that the higher layers generally have fewer units (neighbors) and therefore watch a broader set that the individual lower units.&lt;/p&gt;&lt;p&gt;The &lt;b&gt;Trainer&lt;/b&gt; is a module or bot that passes goals to the agnet in order to optimize its learning rate by maximizing its suprise. This isn't designed. It's simplest version is merely issuing random commands. These commands must be higher level commands so in order to produce them perhaps a particular state will be fed into all othe encoders starting at the bottom. The user would likely need this kind of assistance too.&lt;/p&gt;&lt;p&gt;The &lt;b&gt;User&lt;/b&gt;&amp;nbsp;is the human, program, or agent with a responsibility to manage some kind of environment, attempting to outsource the knowledge creation and management of the environment to the sensorimotor inference engine. The Sensorimotor Inference Engine (specifically, this EPA circuit implementation) allows the User to control a system or environment without ever knowing how to do so.&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;dashed=1;fillStyle=auto;" vertex="1" parent="1">
+                <mxCell id="134" value="&lt;h1&gt;The EPA Circuit&lt;/h1&gt;&lt;p&gt;The &lt;b&gt;Environment &lt;/b&gt;is an environment. It is a game, or a world. It is a function that produces the sensory input that the Sensorimotor Inference Engine learns to manipulate through motor commands. The Agent is in a sensorimotor feedback loop with the environment. Environments range from small to large (so many states and transitions they cannot all be explored let alone recorded), simple to complex (highly integrated), and fully observable (deterministic, markov compliant, the agent is the one actor) to partially observable (generally because there are other actors in the environment or it cannot all be observed for some other reason). For small, simple, fully observable envirnments a naive agent works fine. In partially observable, or complex, or large environments AI or probablistic models are required.&lt;/p&gt;&lt;p&gt;The&lt;b&gt; &lt;u&gt;Encoder&lt;/u&gt; &lt;/b&gt;is a&lt;b&gt;&amp;nbsp;&lt;/b&gt;simple autoencoder. We first encode the raw state so as to produce a compressed representation of it in the context of all observed states. That encoded representation of the current state gets passed up the hierarchy, as the next level's raw state input (as each layer views all the layers below it as part of the environment). We also pass that encoded state to the Actor for later use. We furthermore can pass our representation to our neighbors if we are a multi-agent system and if it makes sense to do so. The encoder is easy to train, as it is a simple autoencoder, however, near by states must have unique representations so it cannot compress the data too much.&lt;/p&gt;&lt;p&gt;The &lt;b&gt;&lt;u&gt;Predictor&lt;/u&gt;&lt;/b&gt;&amp;nbsp;uses as its error metric the next observed state so that given the current state, it learns to predict the next one. However, from any given state of an environment the agent may be able to go to any one of multiple other states based on its motor output (which is yet to be determined, at this point), so in order to predict the 'correct' next state, it is given a goal (which is the motor output of the layer above) to indicate which, of the multiple states that it can go to, it should predict. Once the next state is predicted, in it's fully raw explicit form, it will be run through the encoder and the compressed representation of that state will be fed to the Actor. The Predictor is harder to train than the Encoder because it must be trained across iterations in the sensorimotor loop since it needs to know the next state that occured in order to complete its training.&lt;/p&gt;&lt;p&gt;The &lt;b&gt;&lt;u&gt;Actor&lt;/u&gt;&lt;/b&gt;&amp;nbsp;accepts the compressed representations of both the current state, and the predicted (goal) state. It's job is to learn the motor output that represents the transition from the current state to the predicted state. It will output that motor behavior to the environment in order to make the desired change in the environment occur. It can be given, at its decoding input a compressed representation of other areas of the environmnet which it can only partially see, or cannot see at all. This would be of use in a multi-agent scenario such as assigning an agent to each side of a rubiks cube, allowing each agent to know something about adjacent sides and thereby getting a better picture of the parts of the environment it can affect. The Agent is the hardest model to train as the specific motor output is never explicitly known unless it is guessed. The environment's feedback is, most simply, binary as the motor output provided to it either produces the goal state or does not. This binary answer is, at base, the information it must use to train its network. *It has an asterisk for this purpose; it may need complex training to work with any amount of efficiency, but it is a paramount component to the system because without it no hierarchy can be maintained.&lt;/p&gt;&lt;p&gt;The &lt;b&gt;Memory Module &lt;/b&gt;is a simple data store that keeps track of past states and provides it on demand. It is used to generate models in higher layers that span multiple transformations of the environment state.&lt;/p&gt;&lt;p&gt;The &lt;b&gt;Layers &lt;/b&gt;are almost identical, but the second differs from the first in only one way: the first maps individual states of the environment state space and their transitions. All the Layers above the lowest layer map multiple states in order to take a broader view of both space and time into account. The way the spatial dimension would be taken into account is that the higher layers generally have fewer units (neighbors) and therefore watch a broader set that the individual lower units.&lt;/p&gt;&lt;p&gt;The &lt;b&gt;Trainer&lt;/b&gt; is a module or bot that passes goals to the agnet in order to optimize its learning rate by maximizing its suprise. This isn't designed. It's simplest version is merely issuing random commands. These commands must be higher level commands so in order to produce them perhaps a particular state will be fed into all othe encoders starting at the bottom. The user would likely need this kind of assistance too.&lt;/p&gt;&lt;p&gt;The &lt;b&gt;User&lt;/b&gt;&amp;nbsp;is the human, program, or agent with a responsibility to manage some kind of environment, attempting to outsource the knowledge creation and management of the environment to the sensorimotor inference engine. The Sensorimotor Inference Engine (specifically, this EPA circuit implementation) allows the User to control a system or environment without ever knowing how to do so.&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;dashed=1;fillStyle=auto;" parent="1" vertex="1">
                     <mxGeometry x="200" y="920" width="600" height="860" as="geometry"/>
                 </mxCell>
-                <mxCell id="142" value="next state" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;dashPattern=1 1;" edge="1" parent="1" source="143" target="56">
+                <mxCell id="142" value="next state" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;dashPattern=1 1;" parent="1" source="143" target="56" edge="1">
                     <mxGeometry x="0.1852" relative="1" as="geometry">
                         <mxPoint x="520" y="620" as="targetPoint"/>
                         <Array as="points">
@@ -377,10 +377,10 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="143" value="memory module" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="143" value="memory module" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="80" y="700" width="80" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="146" style="edgeStyle=orthogonalEdgeStyle;elbow=vertical;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;dashed=1;dashPattern=1 1;" edge="1" parent="1" target="3">
+                <mxCell id="146" style="edgeStyle=orthogonalEdgeStyle;elbow=vertical;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;dashed=1;dashPattern=1 1;" parent="1" target="3" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="185.00000000000023" y="830" as="sourcePoint"/>
                         <mxPoint x="320.0000000000002" y="580" as="targetPoint"/>
@@ -392,10 +392,10 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="148" value="E" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="148" value="E" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="550" y="260" width="10" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="152" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;elbow=vertical;fillColor=#d5e8d4;gradientColor=#97d077;strokeColor=#82b366;startArrow=none;exitX=1.007;exitY=0.249;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" target="31">
+                <mxCell id="152" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;elbow=vertical;fillColor=#d5e8d4;gradientColor=#97d077;strokeColor=#82b366;startArrow=none;exitX=1.007;exitY=0.249;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" target="31" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="520.4199999999998" y="549.88" as="sourcePoint"/>
                         <mxPoint x="580" y="550" as="targetPoint"/>
@@ -404,16 +404,16 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="153" value="E" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="153" value="E" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="550" y="540" width="10" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="159" value="training" style="endArrow=classic;html=1;elbow=vertical;endFill=1;dashed=1;dashPattern=1 1;" edge="1" parent="1">
+                <mxCell id="159" value="training" style="endArrow=classic;html=1;elbow=vertical;endFill=1;dashed=1;dashPattern=1 1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="70" y="1000" as="sourcePoint"/>
                         <mxPoint x="160" y="1000" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="162" value="result of motor output" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=1;entryDx=0;entryDy=0;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;exitX=1;exitY=0.75;exitDx=0;exitDy=0;dashed=1;dashPattern=1 1;" edge="1" parent="1" source="143" target="79">
+                <mxCell id="162" value="result of motor output" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=1;entryDx=0;entryDy=0;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;exitX=1;exitY=0.75;exitDx=0;exitDy=0;dashed=1;dashPattern=1 1;" parent="1" source="143" target="79" edge="1">
                     <mxGeometry x="0.1852" relative="1" as="geometry">
                         <mxPoint x="530" y="590" as="targetPoint"/>
                         <Array as="points">
@@ -424,7 +424,7 @@
                         <mxPoint x="170" y="730" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="163" value="result of motor output" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=1;entryDx=0;entryDy=0;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;dashed=1;dashPattern=1 1;" edge="1" parent="1">
+                <mxCell id="163" value="result of motor output" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=1;entryDx=0;entryDy=0;endArrow=classic;endFill=1;elbow=vertical;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;dashed=1;dashPattern=1 1;" parent="1" edge="1">
                     <mxGeometry x="0.4039" relative="1" as="geometry">
                         <mxPoint x="780" y="315" as="targetPoint"/>
                         <Array as="points">
