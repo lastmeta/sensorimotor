@@ -1,0 +1,31 @@
+FROM python:slim
+
+# update some stuff
+RUN apt-get update
+RUN apt-get install -y build-essential wget git vim xdg-utils graphviz 
+
+# install jupyterlab
+RUN pip3 install jupyterlab
+## install jupyterlab
+#RUN pip uninstall -y jupyterlab && \
+#    pip install jupyterlab==1.0.2 && \
+#    jupyter labextension install @pyviz/jupyterlab_pyviz
+#
+## install and enable jupyter notebook extensions
+#RUN conda install -y -c conda-forge jupyter_contrib_nbextensions && \
+#    jupyter contrib nbextension install --system
+#
+## install and enable jupyter notebook copy to clipboard functionality
+#RUN jupyter nbextension install --sys-prefix https://github.com/njwhite/jupyter-clipboard/archive/master.tar.gz && \
+#    jupyter nbextension enable --sys-prefix jupyter-clipboard-master/jupyter-clipboard/main
+
+# solve for issues in setup.py install (ale-py)
+RUN pip3 install numpy
+RUN pip3 install anytree
+RUN pip3 install graphviz
+RUN pip3 install gym
+
+# how to build
+# docker build --no-cache -t satorinet/sensorimotor:base .
+# docker push satorinet/sensorimotor:base
+# docker run --rm -it --name sensorimotor satorinet/sensorimotor:base bash

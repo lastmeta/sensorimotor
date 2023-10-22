@@ -1,15 +1,19 @@
 import os
 from setuptools import setup, find_packages
 
+
 def get_long_description():
     with open("README.md", "r") as fh:
         return fh.read()
 
+
 def get_name():
     return 'sensorimotor'
 
+
 def get_version():
     return '0.0.1'
+
 
 setup(
     name=get_name(),
@@ -20,8 +24,10 @@ setup(
     packages=[f'{get_name()}.{p}' for p in find_packages(where=get_name())],
     install_requires=[
         'numpy',
-        'anytree',
-        'gym[atari]',
+        # 'anytree', # graph version better
+        # 'gym[atari]',
+        'gym',
+        'graphviz',
     ],
     python_requires='>=3.5.2',
     author='Jordan Miller',
