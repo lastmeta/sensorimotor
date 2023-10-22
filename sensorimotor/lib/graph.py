@@ -88,6 +88,8 @@ class Graph:
                         new_path = path + [(parent_node, child_node, edge)]
                         queue.append((parent_node, new_path))
 
+    # this is broken,
+    # I was able to enter an infinite loop
     def path(self, parent: str, child: str):
         ''' Bidirectional BFS from both ends, avoids loops, returns list of edges '''
         search_from_parent = self._get_path_from_parent(parent)
@@ -121,13 +123,14 @@ class Graph:
         for k, edge in self.pairs.items():
             parent = k[0]
             child = k[1]
-            if parent not in names:
-                dot.node(parent)
+            if parent is not None and parent not in names:
+                dot.node(str(parent))
                 names.add(parent)
-            if child not in names:
-                dot.node(child)
+            if child is not None and child not in names:
+                dot.node(str(child))
                 names.add(child)
-            dot.edge(parent, child, label=edge)
+            if parent is not None and child is not None:
+                dot.edge(str(parent), str(child), label=str(edge))
         if filename is not None:
             dot.render(filename, view=True)
         return dot

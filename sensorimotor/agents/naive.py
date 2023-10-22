@@ -55,8 +55,11 @@ class NaiveAgent(object):
                     break
         return self.action, new
 
+    def get_path_simply(self, target, start=None):
+        return [fromToAction[-1] for fromToAction in self.graph.get_path_only_from_parent(parent=start or self.previous, child=target)]
+
     def get_path(self, target, start=None):
-        return self.graph.path(parent=start or self.previous, child=target)
+        return [fromToAction[-1] for fromToAction in self.graph.path(parent=start or self.previous, child=target)]
 
     def reset(self, state):
         self.env.reset(state=state)
