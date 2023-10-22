@@ -1,3 +1,4 @@
+from sensorimotor.envs.finite_line import FiniteNumberLine
 from sensorimotor.envs.number_line import NumberLine
 from sensorimotor.envs.simple_cube import SimpleCube
 from sensorimotor.envs.rubiks_cube import RubiksCube

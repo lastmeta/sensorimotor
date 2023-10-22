@@ -51,7 +51,7 @@ class NumberLine(gym.Env):
             action = {0: 0, 1: 1, 2: -1, 3: 10, 4: -9}.get(action, 0)
         else:
             action = 0
-        self.state += action
+        self._calculate_state(action)
         obs = self.state
         # real Intelligence doesn't need spoonfed 'rewards'
         reward = np.float64(0.0)
@@ -59,6 +59,9 @@ class NumberLine(gym.Env):
         info = {}
         self.env_state = (action, obs, reward, done, info)
         return obs, reward, done, info
+
+    def _calculate_state(self, action):
+        self.state += action
 
     def reset(self, state=None):
         if state is None:

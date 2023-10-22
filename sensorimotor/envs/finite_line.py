@@ -11,7 +11,22 @@ class FiniteNumberLine(NumberLine):
     metadata = {'render.modes': ['human']}
 
     def __init__(self):
-        super(NumberLine, self).__init__()
+        super().__init__()
+
+    def _calculate_state(self, action):
+        proposition = self.state + action
+        # boundary
+        if proposition > 100:
+            self.state = 100
+        elif proposition < 0:
+            self.state = 0
+        # gap
+        elif 45 < proposition < 51 and self.state < 45:
+            self.state = 45
+        elif 45 < proposition < 51 and self.state > 51:
+            self.state = 51
+        else:
+            self.state += action
 
     def execute(self, actions):
         for action in actions:
@@ -19,19 +34,7 @@ class FiniteNumberLine(NumberLine):
                 action = {0: 0, 1: 1, 2: -1, 3: 10, 4: -9}.get(action, 0)
             else:
                 action = 0
-            proposition = self.state + action
-            # boundary
-            if proposition > 100:
-                self.state = 100
-            elif proposition < 0:
-                self.state = 0
-            # gap
-            elif 45 < proposition < 51 and self.state < 45:
-                self.state = 45
-            elif 45 < proposition < 51 and self.state > 51:
-                self.state = 51
-            else:
-                self.state += action
+            self._calculate_state(action)
         return self.state
 
 
