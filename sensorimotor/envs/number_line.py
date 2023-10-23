@@ -12,7 +12,9 @@ class NumberLine(gym.Env):
         super(NumberLine, self).__init__()
         self.action_space = self._action_space()
         self.observation_space = self._observation_space()
+        self.action = None
         self.state = 0
+        self.prior = self.state
 
     def step(self, action):
         return self._request(action)
@@ -47,13 +49,13 @@ class NumberLine(gym.Env):
         return bin(item)[2:]
 
     def _request(self, action):
+        self.action = action
         if isinstance(action, int):
             action = {0: 0, 1: 1, 2: -1, 3: 10, 4: -9}.get(action, 0)
         else:
             action = 0
         self._calculate_state(action)
         obs = self.state
-        # real Intelligence doesn't need spoonfed 'rewards'
         reward = np.float64(0.0)
         done = False
         info = {}
@@ -61,12 +63,15 @@ class NumberLine(gym.Env):
         return obs, reward, done, info
 
     def _calculate_state(self, action):
-        print('WHAT?')
+        self.action = action
+        self.prior = self.state
         self.state += action
 
     def reset(self, state=None):
         if state is None:
             return self._request(None)[0]
+        self.action = None
+        self.prior = self.state
         self.state = state
         return state
 
@@ -76,5 +81,5 @@ class NumberLine(gym.Env):
                 action = {0: 0, 1: 1, 2: -1, 3: 10, 4: -9}.get(action, 0)
             else:
                 action = 0
-            self.state += action
+            self._calculate_state(action)
         return self.state

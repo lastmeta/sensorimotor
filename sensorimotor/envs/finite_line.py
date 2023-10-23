@@ -14,6 +14,7 @@ class FiniteNumberLine(NumberLine):
         super().__init__()
 
     def _calculate_state(self, action):
+        self.prior = self.state
         proposition = self.state + action
         # boundary
         if proposition > 100:

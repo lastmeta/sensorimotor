@@ -12,34 +12,40 @@ class NaiveAgent(object):
     ''' suitable for small, simple environments. uses a tree - explicit memory '''
 
     def __init__(self, env, state=None):
-        self.env = env
-        self.graph = Graph()
-        self.state = None
+        self.env: 'Environment' = env
+        self.graph: Graph = Graph()
         if state is not None:
             self.seed(state)
 
+    @property
+    def prior(self):
+        return self.env.prior
+
+    @property
+    def state(self):
+        return self.env.state
+
+    @property
+    def action(self):
+        return self.env.action
+
     def seed(self, state):
         ''' the first state '''
-        if self.state == None:
-            self.memorize(state, action=0)
-        else:
-            self.reset('root')
-            self.memorize(state, action=0)
-        self.state = state
+        self.memorize(child=state, parent=state, action=0)
 
-    def memorize(self, child: str, action: Union[str, int], parent: str = None):
+    def memorize(self, action: Union[str, int] = None, parent: str = None, child: str = None,):
         ''' save to graph '''
         self.graph.add(
-            parent=parent or self.state,
-            child=child,
-            edge=action)
+            parent=parent or self.prior,
+            child=child or self.state,
+            edge=action or self.action)
 
     def random_step(self):
         return self.env.action_space.sample(), None
 
     def new_random_step(self):
         new = False
-        sisters = self.graph.get_children(parent=self.state)
+        sisters = self.graph.get_children(parent=self.prior)
         sisterActions = [v for v in sisters.values()]
         if len(sisterActions) >= self.env.action_space.n:
             action = self.env.action_space.sample()
@@ -51,20 +57,18 @@ class NaiveAgent(object):
                     break
         return action, new
 
-    def get_path(self, target, start=None, simply=False):
+    def get_path(self, target=None, start=None, simply=False):
         if simply:
             fn = self.graph.get_path_only_from_parent
         else:
             fn = self.graph.path
-        path = fn(parent=start or self.state, child=target)
+        path = fn(parent=start or self.prior, child=target or self.state)
         if path is not None:
             return [fromToAction[-1] for fromToAction in path]
         return path
 
     def reset(self, state):
         self.env.reset(state=state)
-        self.state = state
-        return self.state
 
     def do(self, state, verbose=False):
         actions = self.get_path(target=state)
@@ -108,8 +112,7 @@ class NaiveAgent(object):
             for _ in range(steps):
                 action, new = self.new_random_step()
                 state, _reward, _done, _info = self.env.step(action)
-                self.memorize(parent=self.state, child=state, action=action)
-                self.state = state
+                self.memorize()
                 learnedSomethingNew = (
                     learnedSomethingNew + 1) if new else learnedSomethingNew
         return learnedSomethingNew
