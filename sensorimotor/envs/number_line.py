@@ -61,6 +61,7 @@ class NumberLine(gym.Env):
         return obs, reward, done, info
 
     def _calculate_state(self, action):
+        print('WHAT?')
         self.state += action
 
     def reset(self, state=None):

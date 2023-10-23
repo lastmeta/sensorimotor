@@ -21,9 +21,9 @@ class FiniteNumberLine(NumberLine):
         elif proposition < 0:
             self.state = 0
         # gap
-        elif 45 < proposition < 51 and self.state < 45:
+        elif 45 < proposition < 51 and self.state <= 45:
             self.state = 45
-        elif 45 < proposition < 51 and self.state > 51:
+        elif 45 < proposition < 51 and self.state >= 51:
             self.state = 51
         else:
             self.state += action

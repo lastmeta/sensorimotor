@@ -4,7 +4,7 @@ this implementation uses the graph object which records the graph more
 efficiently than the tree implementation but is slower at path finding.
 the path finding is optimized by breath-frist-search from both ends.
 '''
-
+from typing import Union
 from sensorimotor import Graph
 
 
@@ -14,57 +14,57 @@ class NaiveAgent(object):
     def __init__(self, env, state=None):
         self.env = env
         self.graph = Graph()
-        self.previous = None
-        self.action = 0
+        self.state = None
         if state is not None:
             self.seed(state)
 
     def seed(self, state):
         ''' the first state '''
-        if self.previous == None:
-            self.memorize(state)
+        if self.state == None:
+            self.memorize(state, action=0)
         else:
             self.reset('root')
-            self.memorize(state)
+            self.memorize(state, action=0)
+        self.state = state
 
-    def memorize(self, state):
+    def memorize(self, child: str, action: Union[str, int], parent: str = None):
         ''' save to graph '''
-        self.graph.add(parent=self.previous, child=state, edge=self.action)
-        self.previous = state
+        self.graph.add(
+            parent=parent or self.state,
+            child=child,
+            edge=action)
 
-    def node_exists(self, parent, child, action) -> bool:
-        ''' returns true if the node exists in the graph '''
+    def random_step(self):
+        return self.env.action_space.sample(), None
 
-    def random_step(self, state):
-        self.memorize(state)
-        self.action = self.env.action_space.sample()
-        return self.action
-
-    def new_random_step(self, state):
+    def new_random_step(self):
         new = False
-        sisters = self.graph.get_children(parent=self.previous)
+        sisters = self.graph.get_children(parent=self.state)
         sisterActions = [v for v in sisters.values()]
         if len(sisterActions) >= self.env.action_space.n:
-            self.action = self.env.action_space.sample()
+            action = self.env.action_space.sample()
         else:
-            self.memorize(state)
             new = True
             while True:
-                self.action = self.env.action_space.sample()
-                if self.action not in sisterActions:
+                action = self.env.action_space.sample()
+                if action not in sisterActions:
                     break
-        return self.action, new
+        return action, new
 
-    def get_path_simply(self, target, start=None):
-        return [fromToAction[-1] for fromToAction in self.graph.get_path_only_from_parent(parent=start or self.previous, child=target)]
-
-    def get_path(self, target, start=None):
-        return [fromToAction[-1] for fromToAction in self.graph.path(parent=start or self.previous, child=target)]
+    def get_path(self, target, start=None, simply=False):
+        if simply:
+            fn = self.graph.get_path_only_from_parent
+        else:
+            fn = self.graph.path
+        path = fn(parent=start or self.state, child=target)
+        if path is not None:
+            return [fromToAction[-1] for fromToAction in path]
+        return path
 
     def reset(self, state):
         self.env.reset(state=state)
-        self.previous = state
-        return self.previous
+        self.state = state
+        return self.state
 
     def do(self, state, verbose=False):
         actions = self.get_path(target=state)
@@ -73,24 +73,43 @@ class NaiveAgent(object):
         return self.env.execute(actions=actions)
 
     def fully_train(self, epocs=1, steps=1000, verbose=False, extraVerbose=False):
+        # though we wrote this learnedSomethingNew metric to be detected at
+        # action selection, it's not behaving as expected. So we'll use a simpler metric to
+        # determin if we can stop: the number of pairs in the graph doesn't change.
         learnedSomethingNew = True
+        i = 0
+        priorPairCount = 0
         while learnedSomethingNew:
+            if extraVerbose:
+                print('Iteration:', i, 'Graph Size:', len(self.graph.pairs))
+            if verbose:
+                print('.', end='')
             learnedSomethingNew = self.train(
                 epocs=epocs,
                 steps=steps,
-                verbose=verbose,
-                extraVerbose=extraVerbose)
+                verbose=extraVerbose,
+                extraVerbose=False)
+            if len(self.graph.pairs) == priorPairCount:
+                break
+            priorPairCount = len(self.graph.pairs)
+            i += 1
+        print('Iteration:', i, 'Graph Size:', len(self.graph.pairs))
 
     def train(self, epocs=1, steps=1000, verbose=False, extraVerbose=False):
-        learnedSomethingNew = False
+        learnedSomethingNew = 0
+        if self.state == None:
+            self.state = self.env.reset()
         for _ in range(epocs):
-            state = self.env.reset()
+            # state = self.env.reset() # why reset?
             if extraVerbose:
                 self.env.render()
             elif verbose:
-                print(state, end='\r')
+                print(self.state, end='\r')
             for _ in range(steps):
-                action, new = self.new_random_step(state)
-                learnedSomethingNew = new or learnedSomethingNew
+                action, new = self.new_random_step()
                 state, _reward, _done, _info = self.env.step(action)
+                self.memorize(parent=self.state, child=state, action=action)
+                self.state = state
+                learnedSomethingNew = (
+                    learnedSomethingNew + 1) if new else learnedSomethingNew
         return learnedSomethingNew
