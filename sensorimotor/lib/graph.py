@@ -1,6 +1,5 @@
-from typing import Union
+from typing import Union, List, Tuple, Optional, Dict, Generator
 from collections import deque
-
 # I'm not using anytree correctly. nodes are the entire path, very inefficient.
 # Perhaps I can use these graphs to map it... idk.
 # otherwise just go back to table structure.
@@ -12,6 +11,7 @@ from collections import deque
 class Graph:
     def __init__(self):
         self.pairs: dict[tuple[str, str], Union[str, int]] = {}
+        self.adj_list = self.build_adj_list()
 
     def get(self, parent: str, child: str) -> Union[Union[str, int], None]:
         return self.pairs.get((parent, child), [None])[0]
@@ -30,19 +30,21 @@ class Graph:
 
     def get_path_only_from_parent(self, parent: str, child: str):
         ''' BFS from parent to child, avoids loops, returns list of edges '''
-        # A queue to hold the node and the path so far
         queue = deque([(parent, [])])
+        visited = set()
         while queue:
             node, path = queue.popleft()  # Dequeue the front node-path pair
             if node == child:
                 return path  # Return the path when the end node is reached
-            for edge_key, edges in self.pairs.items():
-                parent_node, child_node = edge_key
-                if parent_node == node and edge_key not in path:
-                    for edge in edges:
-                        # Enqueue all neighboring nodes and the path so far
-                        new_path = path + [(parent_node, child_node, edge)]
-                        queue.append((child_node, new_path))
+            if node not in visited:
+                visited.add(node)  # Mark the node as visited
+                for edge_key, edges in self.pairs.items():
+                    parent_node, child_node = edge_key
+                    if parent_node == node:
+                        for edge in edges:
+                            # Enqueue all neighboring nodes and the path so far
+                            new_path = path + [(parent_node, child_node, edge)]
+                            queue.append((child_node, new_path))
         return None  # Return None if no path is found
 
     def get_path_only_from_child(self, parent: str, child: str):
@@ -62,118 +64,57 @@ class Graph:
                         queue.append((parent_node, new_path))
         return None  # Return None if no path is found
 
-    # def _get_path_from_parent(self, parent: str):
-    #     ''' Generator for BFS from parent to child, avoids loops, yields nodes and paths '''
-    #     queue = deque([(parent, [])])
-    #     while queue:
-    #         node, path = queue.popleft()
-    #         yield node, path  # Yield the current node and path
-    #         for edge_key, edges in self.pairs.items():
-    #             parent_node, child_node = edge_key
-    #             if parent_node == node and edge_key not in path:
-    #                 for edge in edges:
-    #                     new_path = path + [(parent_node, child_node, edge)]
-    #                     queue.append((child_node, new_path))
+    def build_adj_list(self) -> Dict[str, List[Tuple[str, str]]]:
+        adj_list = {}
+        for edge_key, edges in self.pairs.items():
+            parent_node, child_node = edge_key
+            adj_list.setdefault(parent_node, []).extend(
+                (child_node, edge) for edge in edges)
+            adj_list.setdefault(child_node, []).extend(
+                (parent_node, edge) for edge in edges)  # For bidirectional search
+        return adj_list
 
-    # def _get_path_from_child(self, child: str):
-    #     ''' Generator for BFS from child to parent, avoids loops, yields nodes and paths '''
-    #     queue = deque([(child, [])])
-    #     while queue:
-    #         node, path = queue.popleft()
-    #         yield node, path  # Yield the current node and path
-    #         for edge_key, edges in self.pairs.items():
-    #             parent_node, child_node = edge_key
-    #             if child_node == node and edge_key not in path:
-    #                 for edge in edges:
-    #                     new_path = path + [(parent_node, child_node, edge)]
-    #                     queue.append((parent_node, new_path))
+    def bfs(self, start: str) -> Generator[Tuple[str, List[Tuple[str, str, str]]], None, None]:
+        queue = deque([(start, [])])
+        visited = set()
 
-    # # this is broken,
-    # # I was able to enter an infinite loop
-    # def path(self, parent: str, child: str):
-    #     ''' Bidirectional BFS from both ends, avoids loops, returns list of edges '''
-    #     search_from_parent = self._get_path_from_parent(parent)
-    #     search_from_child = self._get_path_from_child(child)
-    #     visited_from_parent = {}
-    #     visited_from_child = {}
-    #     while True:
-    #         try:
-    #             node_parent, path_parent = next(search_from_parent)
-    #             visited_from_parent[node_parent] = path_parent
-    #         except StopIteration:
-    #             break  # Stop if the search from parent has exhausted all nodes
-    #         try:
-    #             node_child, path_child = next(search_from_child)
-    #             visited_from_child[node_child] = path_child
-    #         except StopIteration:
-    #             break  # Stop if the search from child has exhausted all nodes
-    #         # Check for intersection
-    #         if node_parent in visited_from_child:
-    #             # Combine the paths at the intersecting node
-    #             return path_parent + list(reversed(visited_from_child[node_parent]))
-    #         if node_child in visited_from_parent:
-    #             # Combine the paths at the intersecting node
-    #             return visited_from_parent[node_child] + list(reversed(path_child))
-    #     return None  # Return None if no path is found
-
-    def _get_path_from_parent(self, parent, child):
-        from collections import deque
-        queue = deque([(parent, [])])
-        visited = set()  # Track visited nodes to avoid cycles
         while queue:
             node, path = queue.popleft()
+            if node in visited:
+                continue
             visited.add(node)
             yield node, path
-            for edge_key, edges in self.pairs.items():
-                parent_node, child_node = edge_key
-                if parent_node == node and child_node not in visited:
-                    for edge in edges:
-                        new_path = path + [(parent_node, child_node, edge)]
-                        queue.append((child_node, new_path))
+            for child_node, edge in self.adj_list.get(node, []):
+                new_path = path + [(node, child_node, edge)]
+                queue.append((child_node, new_path))
 
-    def _get_path_from_child(self, parent, child):
-        from collections import deque
-        queue = deque([(child, [])])
-        visited = set()  # Track visited nodes to avoid cycles
-        while queue:
-            node, path = queue.popleft()
-            visited.add(node)
-            yield node, path
-            for edge_key, edges in self.pairs.items():
-                parent_node, child_node = edge_key
-                if child_node == node and parent_node not in visited:
-                    for edge in edges:
-                        new_path = path + [(parent_node, child_node, edge)]
-                        queue.append((parent_node, new_path))
-
-    def path(self, parent, child):
-        search_from_parent = self._get_path_from_parent(parent, child)
-        search_from_child = self._get_path_from_child(parent, child)
+    def path(self, parent: str, child: str) -> Optional[List[Tuple[str, str, str]]]:
+        ''' bidirectional breadth-first-search from both ends, avoids loops, yields nodes and paths'''
+        search_from_parent = self.bfs(parent)
+        search_from_child = self.bfs(child)
         visited_from_parent = {}
         visited_from_child = {}
+
         while True:
             try:
                 node_parent, path_parent = next(search_from_parent)
-                if node_parent in visited_from_parent:
-                    continue  # Skip revisited nodes
                 visited_from_parent[node_parent] = path_parent
             except StopIteration:
                 break
 
             try:
                 node_child, path_child = next(search_from_child)
-                if node_child in visited_from_child:
-                    continue  # Skip revisited nodes
                 visited_from_child[node_child] = path_child
             except StopIteration:
                 break
 
             if node_parent in visited_from_child:
-                return path_parent + list(reversed(visited_from_child[node_parent]))
-            if node_child in visited_from_parent:
-                return visited_from_parent[node_child] + list(reversed(path_child))
+                return path_parent + list(reversed([(child_node, parent_node, edge) for parent_node, child_node, edge in visited_from_child[node_parent]]))
 
-        return None
+            if node_child in visited_from_parent:
+                return visited_from_parent[node_child] + list(reversed([(child_node, parent_node, edge) for parent_node, child_node, edge in visited_from_child[node_child]]))
+
+        return None  # Return None if no path is found
 
     def visualize(self, filename: str = None):
         from graphviz import Digraph

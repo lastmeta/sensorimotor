@@ -10,22 +10,34 @@ class FiniteNumberLine(NumberLine):
     ''' the agent can move back and forth on the number line '''
     metadata = {'render.modes': ['human']}
 
-    def __init__(self):
+    def __init__(self, max=100, min=0, gapMin=45, gapMax=51):
         super().__init__()
+        self.max = max
+        self.min = min
+        self.gapMin = gapMin
+        self.gapMax = gapMax
 
     def _calculate_state(self, action):
         self.prior = self.state
         proposition = self.state + action
         # boundary
-        if proposition > 100:
-            self.state = 100
-        elif proposition < 0:
-            self.state = 0
+        if proposition > self.max:
+            self.state = self.max
+        elif proposition < self.min:
+            self.state = self.min
         # gap
-        elif 45 < proposition < 51 and self.state <= 45:
-            self.state = 45
-        elif 45 < proposition < 51 and self.state >= 51:
-            self.state = 51
+        elif (
+            self.gapMin < self.gapMax and
+            self.gapMin < proposition < self.gapMax and
+            self.state <= self.gapMin
+        ):
+            self.state = self.gapMin
+        elif (
+            self.gapMin < self.gapMax and
+            self.gapMin < proposition < self.gapMax and
+            self.state >= self.gapMax
+        ):
+            self.state = self.gapMax
         else:
             self.state += action
 
