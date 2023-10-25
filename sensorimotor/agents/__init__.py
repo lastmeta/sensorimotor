@@ -1,2 +1,2 @@
-from sensorimotor.agents.naive_tree import NaiveTreeAgent
-from sensorimotor.agents.naive import NaiveAgent
+from sensorimotor.agents.naive.naive_tree import NaiveTreeAgent
+from sensorimotor.agents.naive.naive import NaiveAgent

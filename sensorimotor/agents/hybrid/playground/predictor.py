@@ -12,6 +12,8 @@ In this code:
 
 This way, you've altered the autoencoder architecture to predict the next state instead of reconstructing the current state, with a different loss function to measure the prediction error.
 '''
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.models import Sequential
 import keras
 from keras.layers import Input, Dense
 from keras.models import Model
@@ -38,3 +40,27 @@ predictor.compile(optimizer='adam', loss='mean_squared_error')
 # Now you can train the predictor using your data
 # Assuming `x_train` is your input data and `y_train` is your target data representing the next state
 # predictor.fit(x_train, y_train, epochs=50, batch_size=256, shuffle=True, validation_data=(x_test, y_test))
+
+
+# Let's assume each state is represented as a vector of length L=20
+input_dim = 20  # The size of the state vector
+output_dim = 20  # The size of the next state vector
+
+# Create your neural network model
+model = Sequential([
+    Dense(128, input_dim=input_dim, activation='relu'),
+    Dense(64, activation='relu'),
+    # linear activation for the output layer
+    Dense(output_dim, activation='linear')
+])
+
+# Compile the model
+# Mean Squared Error as the loss function
+model.compile(optimizer='adam', loss='mse')
+
+# Train the model
+# x_train contains your current states, y_train contains the next states
+# model.fit(x_train, y_train, epochs=100, batch_size=32)
+
+# To make a prediction for a new state
+# new_state = model.predict(current_state)
