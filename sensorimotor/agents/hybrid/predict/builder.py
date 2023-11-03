@@ -23,7 +23,7 @@ class PredictionModel:
         optimizer = SGD(lr=0.01)
         self.model.compile(
             loss='binary_crossentropy',
-            optimizer=optimizer, 
+            optimizer=optimizer,
             metrics=['accuracy'])
 
     @staticmethod
@@ -39,7 +39,7 @@ class PredictionModel:
         ''' calculates the variance of a given the output of the model '''
         return np.var(prediction, axis=0)
 
-    def train(self, x_train, y_train, epochs=None, batch_size=None):
+    def train(self, x_train, y_train, epochs=1, batch_size=None):
         ''' incremental training'''
         if not self.model:
             return

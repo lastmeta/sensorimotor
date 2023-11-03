@@ -77,8 +77,8 @@ class NaiveAgent(object):
     def reset(self, state):
         self.env.reset(state=state)
 
-    def do(self, state, verbose=False):
-        actions = self.get_path(target=state)
+    def do(self, state, actions: list = None, verbose=False):
+        actions = actions or self.get_path(target=state)
         if verbose:
             print(actions)
         return self.env.execute(actions=actions)
@@ -118,7 +118,8 @@ class NaiveAgent(object):
                 print(self.state, end='\r')
             for _ in range(steps):
                 action, new = self.new_random_step()
-                state, _reward, _done, _info = self.env.step(action)
+                # the state is saved on the environment
+                _state, _reward, _done, _info = self.env.step(action)
                 self.memorize()
                 learnedSomethingNew = (
                     learnedSomethingNew + 1) if new else learnedSomethingNew
