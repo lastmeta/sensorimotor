@@ -16,16 +16,9 @@ class NumberLine(gym.Env):
         self.state = 0
         self.prior = self.state
 
-    def step(self, action):
-        return self._request(action)
-
-    def render(self, mode='human', close=False):
-        action, obs, reward, done, info = self.env_state
-        if action == None:
-            print("{}\n".format(obs))
-        else:
-            print("{}\t\t--> {:.18f}{}\n{}\n".format(action,
-                  reward, (' DONE!' if done else ''), obs))
+    @property
+    def actions(self):
+        return list(range(self.action_space.n))
 
     def _action_space(self):
         '''
@@ -36,6 +29,17 @@ class NumberLine(gym.Env):
         4 = -9
         '''
         return gym.spaces.Discrete(5)
+
+    def step(self, action):
+        return self._request(action)
+
+    def render(self, mode='human', close=False):
+        action, obs, reward, done, info = self.env_state
+        if action == None:
+            print("{}\n".format(obs))
+        else:
+            print("{}\t\t--> {:.18f}{}\n{}\n".format(action,
+                  reward, (' DONE!' if done else ''), obs))
 
     def _observation_space(self):
         return gym.spaces.Box(low=np.NINF, high=np.inf, shape=(1,), dtype=np.int64)

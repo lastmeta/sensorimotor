@@ -5,7 +5,7 @@ Predictor models - for every action we can take we build 2 models:
 We continually train these models as we explore the environment, and use them to
 guide our pathfinding.
 '''
-
+import numpy as np
 from sensorimotor.agents.hybrid.predict.builder import PredictionModel
 
 
@@ -53,3 +53,29 @@ class Predictor:
     @validateAction
     def predict_past(self, state, action):
         return self.pasts.get(action).model.predict(state)
+
+    @validateAction
+    def predict_future_uncertainty(self, state, action):
+        return PredictionModel.calculate_variance(
+            self.predict_future(state, action))
+
+    def actions_by_expected_information_gain(self, state, unexplored_actions):
+        '''
+        the metric we use is the variance of the prediction of the next state
+        which might be only loosely correlated with the the model's confidence
+        which is what we really want to use as a metric. If this is insufficient
+        we will have to modify the model in order to capture confidence:
+        https://chat.openai.com/share/7d7c12f6-7880-4083-8a59-16e64ca85f5e see
+        "To extract an uncertainty measure..."
+        '''
+
+        def order_actions_by_variance(action_variance: dict) -> list:
+            ''' orders the actions by their variance, lowest to highest '''
+            ordered_actions = sorted(action_variance, key=action_variance.get)
+            return ordered_actions
+
+        return order_actions_by_variance(
+            action_variance={
+                action: self.predict_future_uncertainty(state, action)
+                for action in unexplored_actions
+                if action in self.actions})

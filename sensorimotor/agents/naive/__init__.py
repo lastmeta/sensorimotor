@@ -10,3 +10,4 @@ order of up to maybe 10 thousand. This is because it must explore the vast
 majority of the environment in order to be generally useful as a sensorimotor
 inference engine.
 '''
+from .agent import NaiveAgent

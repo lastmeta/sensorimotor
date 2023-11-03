@@ -6,10 +6,11 @@ the path finding is optimized by breath-frist-search from both ends.
 '''
 from typing import Union
 from sensorimotor import Graph
+from random import sample
 
 
 class NaiveAgent(object):
-    ''' suitable for small, simple environments. uses a tree - explicit memory '''
+    ''' suitable for small, simple environments. uses explicit memory '''
 
     def __init__(self, env, state=None):
         self.env: 'Environment' = env
@@ -43,18 +44,24 @@ class NaiveAgent(object):
     def random_step(self):
         return self.env.action_space.sample(), None
 
+    def unused_actions(self):
+        sisters = self.graph.get_children(parent=self.prior)
+        used_actions = [v for v in sisters.values()]
+        if len(used_actions) >= self.env.action_space.n:
+            return []
+        else:
+            return [
+                action for action in self.env.actions
+                if action not in used_actions]
+
     def new_random_step(self):
         new = False
-        sisters = self.graph.get_children(parent=self.prior)
-        sisterActions = [v for v in sisters.values()]
-        if len(sisterActions) >= self.env.action_space.n:
+        unused = self.unused_actions()
+        if len(unused) == 0:
             action = self.env.action_space.sample()
         else:
             new = True
-            while True:
-                action = self.env.action_space.sample()
-                if action not in sisterActions:
-                    break
+            action = sample(unused, 1)
         return action, new
 
     def get_path(self, target=None, start=None, simply=False):

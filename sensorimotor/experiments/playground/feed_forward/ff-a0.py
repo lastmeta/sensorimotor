@@ -1,5 +1,5 @@
 '''
-without bias
+forward both ways with bias, and with different weights and with traditional backprop
 '''
 import numpy as np
 
@@ -13,41 +13,27 @@ def sigmoid_derivative(x):
 
 
 class NeuralNetwork:
-    def __init__(self, input_size, hidden_size, output_size, seed=4200):
+    def __init__(self, input_size, hidden_size, output_size, seed=42):
         self.input_size = input_size
         self.hidden_size = hidden_size
         self.output_size = output_size
         self.rng = np.random.default_rng(seed)
         self.hidden_weights = self.rng.uniform(
             low=0.0, high=1.0, size=(input_size, hidden_size))
+        self.hidden_bias = self.rng.uniform(
+            low=0.0, high=1.0, size=(1, hidden_size))
         self.output_weights = self.rng.uniform(
             low=0.0, high=1.0, size=(hidden_size, output_size))
+        self.output_bias = self.rng.uniform(
+            low=0.0, high=1.0, size=(1, output_size))
 
     def forward(self, X):
-        self.hidden_layer_activation = np.dot(X, self.hidden_weights)
+        self.hidden_layer_activation = np.dot(
+            X, self.hidden_weights) + self.hidden_bias
         self.hidden_layer_output = sigmoid(self.hidden_layer_activation)
         self.output_layer_activation = np.dot(
-            self.hidden_layer_output,
-            self.output_weights)
+            self.hidden_layer_output, self.output_weights) + self.output_bias
         self.output = sigmoid(self.output_layer_activation)
-        return self.output
-
-    def forward_verbose(self, X):
-        print('X', X)
-        print('dot')
-        print('self.hidden_weights', self.hidden_weights)
-        self.hidden_layer_activation = np.dot(X, self.hidden_weights)
-        print('self.hidden_layer_activation', self.hidden_layer_activation)
-        self.hidden_layer_output = sigmoid(self.hidden_layer_activation)
-        print('self.hidden_layer_output', self.hidden_layer_output)
-        print('dot')
-        print('self.output_weights', self.output_weights)
-        self.output_layer_activation = np.dot(
-            self.hidden_layer_output,
-            self.output_weights)
-        print('self.output_layer_activation', self.output_layer_activation)
-        self.output = sigmoid(self.output_layer_activation)
-        print('self.output', self.output)
         return self.output
 
     def backward(self, X, y, learning_rate=0.1):
@@ -61,7 +47,11 @@ class NeuralNetwork:
         # Updating Weights and Biases
         self.output_weights += self.hidden_layer_output.T.dot(
             d_output) * learning_rate
+        self.output_bias += np.sum(d_output, axis=0,
+                                   keepdims=True) * learning_rate
         self.hidden_weights += X.T.dot(d_hidden_layer) * learning_rate
+        self.hidden_bias += np.sum(d_hidden_layer,
+                                   axis=0, keepdims=True) * learning_rate
 
     def train(self, X, y, learning_rate=0.1, epochs=10000):
         for _ in range(epochs):
@@ -80,12 +70,13 @@ if __name__ == "__main__":
     nn = NeuralNetwork(input_size=2, hidden_size=2, output_size=1)
     nn.train(X, y)
     print('predictions:\n ', '\n  '.join([f'{i} -> {o[0]} ({k[0]})' for i, o,
-          k in zip(X, nn.predict(X), nn.forward_verbose(X))]))
+          k in zip(X, nn.predict(X), nn.forward(X))]))
     print('network:')
     print('  hidden_weights:', '\n    '.join(
         [f'{i}' for i in nn.hidden_weights]))
+    print('  hidden_bias:', '\n    '.join(
+        [f'{i}' for i in nn.hidden_bias]))
     print('  output_weights:', '\n    '.join(
         [f'{i}' for i in nn.output_weights]))
-    for x in X:
-        print(x)
-        print(nn.forward_verbose(x))
+    print('  output_bias:', '\n    '.join(
+        [f'{i}' for i in nn.output_bias]))

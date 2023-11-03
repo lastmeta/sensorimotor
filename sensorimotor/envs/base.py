@@ -1,3 +1,4 @@
+# unused - we use Gym instead.
 '''
 agents communicate in binary strings (motor output, actions)
 environments communicate in binary strings (state rep, observaiton)

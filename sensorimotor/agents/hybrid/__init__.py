@@ -42,3 +42,15 @@ It might go without saying that the training of these models should be
 continuous; as long we we're getting more information about the environment, we
 should continue to train.
 '''
+# next step:
+#   implement the training process of the hybrid agent in it's simplest form:
+#   1. after every state-to-state transition, run training on the predictor.
+#   2. after every state-to-state transition, run training on the pathway.
+#       a. choose two a random popular states (visited often, so record that)
+#       b. find a path between them
+#       c. find the middle state on that path (or the clipped list of actions)
+#       d. train the pathway model with the middle state as the output
+
+
+# then:
+#   implement the training process of the hybrid agent in it's parallel form:
