@@ -1,4 +1,5 @@
-from typing import Union, List, Tuple, Optional, Dict, Generator
+from typing import Union, Optional, Generator
+import random
 from collections import deque
 # I'm not using anytree correctly. nodes are the entire path, very inefficient.
 # Perhaps I can use these graphs to map it... idk.
@@ -10,8 +11,19 @@ from collections import deque
 
 class Graph:
     def __init__(self):
-        self.pairs: dict[tuple[str, str], Union[str, int]] = {}
-        self.adj_list = self.build_adj_list()
+        self.pairs: dict[tuple[str, str], list[Union[str, int]]] = {}
+        self.adj_list: dict[str, list[tuple[str, str]]] = self.build_adj_list()
+
+    def get_dataset(self) -> Union[None, dict[Union[str, int], list[list[str], list[str]]]]:
+        if len(self.pairs) == 0:
+            return None
+        ret = {}
+        for (parent, child), action in self.pairs.items():
+            if action not in ret:
+                ret[action] = [[], []]
+            ret[action][0].append(parent)
+            ret[action][1].append(child)
+        return ret
 
     def get(self, parent: str, child: str) -> Union[Union[str, int], None]:
         return self.pairs.get((parent, child), [None])[0]
@@ -64,7 +76,7 @@ class Graph:
                         queue.append((parent_node, new_path))
         return None  # Return None if no path is found
 
-    def build_adj_list(self) -> Dict[str, List[Tuple[str, str]]]:
+    def build_adj_list(self) -> dict[str, list[tuple[str, str]]]:
         adj_list = {}
         for edge_key, edges in self.pairs.items():
             parent_node, child_node = edge_key
@@ -74,7 +86,7 @@ class Graph:
                 (parent_node, edge) for edge in edges)  # For bidirectional search
         return adj_list
 
-    def bfs(self, start: str) -> Generator[Tuple[str, List[Tuple[str, str, str]]], None, None]:
+    def bfs(self, start: str) -> Generator[tuple[str, list[tuple[str, str, str]]], None, None]:
         queue = deque([(start, [])])
         visited = set()
 
@@ -88,7 +100,7 @@ class Graph:
                 new_path = path + [(node, child_node, edge)]
                 queue.append((child_node, new_path))
 
-    def path(self, parent: str, child: str) -> Optional[List[Tuple[str, str, str]]]:
+    def path(self, parent: str, child: str) -> Optional[list[tuple[str, str, str]]]:
         ''' bidirectional breadth-first-search from both ends, avoids loops, yields nodes and paths'''
         search_from_parent = self.bfs(parent)
         search_from_child = self.bfs(child)
@@ -134,6 +146,33 @@ class Graph:
         if filename is not None:
             dot.render(filename, view=True)
         return dot
+
+
+class CountingGraph(Graph):
+    def __init__(self):
+        super().__init__()
+        self.counts: dict[str, int] = {}
+
+    def count(self, child: str) -> None:
+        self.counts[child] = self.counts.get(child, 0) + 1
+
+    # override
+    def add(self, parent: str, child: str, edge: str):
+        if (parent, child) not in self.pairs:
+            self.pairs[(parent, child)] = []
+        if edge not in self.pairs[(parent, child)]:
+            self.pairs[(parent, child)].append(edge)
+        if self.counts is not None:
+            self.count(child)
+
+    def get_random_popular_state(self) -> Union[str, None]:
+        ''' get a random state that has been visited more than once '''
+        average = sum([v for v in self.counts.values()]) / len(self.counts)
+        popular = [k for k, v in self.counts.items() if v >= average]
+        if len(popular) == 0:
+            return None
+        else:
+            return random.choice(popular)
 
 # Usage
 # graph = Graph()

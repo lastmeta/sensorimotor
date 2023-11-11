@@ -46,7 +46,8 @@ class NaiveAgent(object):
 
     def unused_actions(self):
         sisters = self.graph.get_children(parent=self.prior)
-        used_actions = [v for v in sisters.values()]
+        used_nested = [v for v in sisters.values()]
+        used_actions = [item for sublist in used_nested for item in sublist]
         if len(used_actions) >= self.env.action_space.n:
             return []
         else:

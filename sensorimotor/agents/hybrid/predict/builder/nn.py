@@ -1,19 +1,25 @@
 import math
 import numpy as np
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.optimizers import SGD
+from sensorimotor.agents.hybrid.predict.builder import ModelModel
 
 
-class PredictionModel:
+class NeuralNetModel(ModelModel):
+    '''
+    simple incrementally trainable neural network.
+    '''
+
     def __init__(self, input_dim: int, output_dim: int):
+        from tensorflow.keras.models import Sequential
+        from tensorflow.keras.layers import Dense
+        from tensorflow.keras.optimizers import SGD
+        super().__init__(input_dim, output_dim)
         self.model = Sequential([
             Dense(
-                PredictionModel.dim_layer(input_dim, multiplier=6),
+                NeuralNetModel.dim_layer(input_dim, multiplier=6),
                 input_dim=input_dim,
                 activation='relu'),
             Dense(
-                PredictionModel.dim_layer(output_dim, multiplier=3),
+                NeuralNetModel.dim_layer(output_dim, multiplier=3),
                 activation='relu'),
             Dense(output_dim, activation='linear')
         ])
@@ -52,9 +58,13 @@ class PredictionModel:
         for iters in range(1000):
             self.model.fit(x_train, y_train, epochs=1000)
             predictions = self.model.predict(x_train)
-            if PredictionModel.calculate_mse(predictions, y_train) <= self.mse_threshold:
+            if NeuralNetModel.calculate_mse(predictions, y_train) <= self.mse_threshold:
                 print(f"Mapping learned after {iters+1} epochs.")
                 break
+
+    def predict(self, x):
+        ''' Make predictions with the trained model '''
+        return self.model.predict(x)
 
 
 comment = '''

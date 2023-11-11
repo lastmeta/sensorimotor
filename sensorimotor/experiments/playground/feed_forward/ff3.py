@@ -12,7 +12,10 @@ input layer | middle1 | middle2 | middle3 | output layer
 bias the middle1 the same as middle3. This might mean we allocate some of the 
 bias to one or the other layer. idk.
 2. I think activations must be bounded back as well as the modifications to the
-weights. so that this is the backpropagation process... 
+weights. so that this is the backpropagation process...
+
+the problem I'm hitting now is that I don't know how to make the model. weights
+have complicated relationships and I'm struggling to conceptualize them. 
 
 '''
 import numpy as np

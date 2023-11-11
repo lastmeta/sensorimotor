@@ -28,6 +28,7 @@ setup(
         # 'gym[atari]',
         'gym',
         'graphviz',
+        'xgboost',
     ],
     python_requires='>=3.5.2',
     author='Jordan Miller',

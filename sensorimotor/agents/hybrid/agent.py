@@ -1,9 +1,12 @@
 ''' https://chat.openai.com/share/7d7c12f6-7880-4083-8a59-16e64ca85f5e '''
 
 import numpy as np
+from sensorimotor import CountingGraph
+from sensorimotor.agents.naive import NaiveAgent
+from sensorimotor.agents.hybrid.predict.builder.nn import NeuralNetModel
+from sensorimotor.agents.hybrid.predict.builder.xgb import XgboostModel
 from sensorimotor.agents.hybrid.predict.predictor import Predictor
 from sensorimotor.agents.hybrid.predict.pathway import Pathway
-from sensorimotor.agents.naive import NaiveAgent
 
 
 class HybridAgent(NaiveAgent):
@@ -11,37 +14,57 @@ class HybridAgent(NaiveAgent):
 
     def __init__(self, env, state=None):
         super().__init__(env, state)
+        self.graph: CountingGraph = CountingGraph()
         action_list = list(range(self.env.action_space.n))
         self.predictor = Predictor(
             actions=action_list, dimension=self.state_dimension())
         self.pathway = Pathway(
-            actions=action_list, dimension=self.state_dimension())
+            dimension=self.state_dimension())
         self.initial_training_done = False
 
     def train_predictive_models(self, action, current_state, next_state):
         ''' Train the predictive models with new state transition '''
-        self.predictor.train_future_action(
-            action,
-            np.array([current_state]),
-            np.array([next_state]))
-        self.predictor.train_past_action(
-            action,
-            np.array([next_state]),
-            np.array([current_state]))
+        if self.predictor.model.model == None:
+            return
+        if self.predictor.model is NeuralNetModel:
+            self.predictor.train_future_action(
+                action,
+                np.array([current_state]),
+                np.array([next_state]))
+            self.predictor.train_past_action(
+                action,
+                np.array([next_state]),
+                np.array([current_state]))
+        if self.predictor.model is XgboostModel:
+            # get this dataset from the graph:
+            dataset = self.graph.get_state_stat(current_state)
+            for action, parentChild in dataset.items():
+                self.predictor.train_future_action(
+                    action,
+                    np.array(parentChild[0]),
+                    np.array(parentChild[1]))
+                self.predictor.train_past_action(
+                    action,
+                    np.array(parentChild[1]),
+                    np.array(parentChild[0]))
 
     def train_pathway_models(self):
         ''' Train the predictive models with new state transition '''
-        # choose random path from 2 random popular states
-        # how do we know which states are popular? we keep a count of every
-        # state explored in the graph. to do.
-        # target = self.graph.get_random_popular_state()
-        # start = self.graph.get_random_popular_state()
-        # path = self.get_path(target=target, start=start)
-        # middle = path[len(path) // 2]
-        # self.pathway.train_middle_state(
-        #    current_state=np.array([start]),
-        #    goal_state=np.array([target]),
-        #    middle_state=middle)
+        if self.pathway.model.model == None:
+            return
+        target = self.graph.get_random_popular_state()
+        if target is None:
+            return
+        start = self.graph.get_random_popular_state()
+        if start is None or target == start:
+            return
+        path = self.get_path(target=target, start=start)
+        if path is None or len(path) == 0:
+            return
+        self.pathway.train_middle_state(
+            current_state=np.array([start]),
+            goal_state=np.array([target]),
+            middle_state=path[len(path) // 2])
 
     def state_dimension(self):
         ''' Returns the dimensionality of the state space '''
@@ -50,7 +73,9 @@ class HybridAgent(NaiveAgent):
     def memorize_and_predict(self, action, state, new_state, reward, done):
         ''' Memorize the transition and train predictive models '''
         super().memorize(action, state, new_state)
-        self.train_predictive_models(action, state, new_state)
+        # don't remember why we memorize and predict here.
+        # why not just do it in training? not acting...?
+        # self.train_predictive_models(action, state, new_state)
 
     def decide_action(self, state=None) -> tuple[int, bool]:
         ''' Decide action based on predictive models or random choice '''
@@ -83,6 +108,7 @@ class HybridAgent(NaiveAgent):
         learnedSomethingNew = True
         i = 0
         priorPairCount = 0
+        usingNN = self.predictor.model is NeuralNetModel
         while learnedSomethingNew:
             if extraVerbose:
                 print('Iteration:', i, 'Graph Size:', len(self.graph.pairs))
@@ -92,7 +118,12 @@ class HybridAgent(NaiveAgent):
                 epocs=epocs,
                 steps=steps,
                 verbose=extraVerbose,
-                extraVerbose=False)
+                extraVerbose=False,
+                trainModels=usingNN)
+            if not usingNN:
+                self.train_predictive_models(
+                    '', self.prior, self.state)
+                self.train_pathway_models()
             if len(self.graph.pairs) == priorPairCount:
                 break
             priorPairCount = len(self.graph.pairs)
@@ -100,7 +131,15 @@ class HybridAgent(NaiveAgent):
         self.initial_training_done = True
         print('Iteration:', i, 'Graph Size:', len(self.graph.pairs))
 
-    def train(self, epocs=1, steps=1000, verbose=False, extraVerbose=False):
+    def pretrain(self, epocs=1, steps=1000, verbose=False, extraVerbose=False):
+        ''' does some training to get the models started '''
+        self.train(epocs=epocs, steps=steps, verbose=verbose,
+                   extraVerbose=extraVerbose, trainModels=False)
+        if self.predictor.model.model == None:
+            self.predictor.model.initialize_model()
+            self.pathway.model.initialize_model()
+
+    def train(self, epocs=1, steps=1000, verbose=False, extraVerbose=False, trainModels: bool = True):
         learnedSomethingNew = 0
         if self.state == None:
             self.state = self.env.reset()
@@ -117,6 +156,8 @@ class HybridAgent(NaiveAgent):
                 self.memorize()
                 learnedSomethingNew = (
                     learnedSomethingNew + 1) if new else learnedSomethingNew
-                self.train_predictive_models(action, self.prior, self.state)
-                self.train_pathway_models(self.prior, self.state)
+                if trainModels and self.predictor.model is NeuralNetModel:
+                    self.train_predictive_models(
+                        action, self.prior, self.state)
+                    self.train_pathway_models()
         return learnedSomethingNew

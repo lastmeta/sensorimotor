@@ -5,12 +5,16 @@ Predictor models - for every action we can take we build 2 models:
 We continually train these models as we explore the environment, and use them to
 guide our pathfinding.
 '''
-import numpy as np
-from sensorimotor.agents.hybrid.predict.builder import PredictionModel
+from sensorimotor.agents.hybrid.predict.builder import ModelType
+from sensorimotor.agents.hybrid.predict.builder.nn import NeuralNetModel
+from sensorimotor.agents.hybrid.predict.builder.xgb import XgboostModel
 
 
 class Predictor:
-    def __init__(self, actions: list, dimension: int):
+    def __init__(self, actions: list, dimension: int, model_type: ModelType = None):
+        if model_type is None or model_type == ModelType.XGBoost:
+            self.model = XgboostModel()
+        self.model_type = model_type
         self.dimension: int = dimension
         self.actions: list = []
         self.futures: dict = {}
@@ -23,12 +27,16 @@ class Predictor:
 
     def add_action(self, action):
         self.actions.append(action)
-        self.futures[action] = PredictionModel(
-            input_dim=self.dimension,
-            output_dim=self.dimension)
-        self.pasts[action] = PredictionModel(
-            input_dim=self.dimension,
-            output_dim=self.dimension)
+        if self.model_type is None or self.model_type == ModelType.XGBoost:
+            self.futures[action] = XgboostModel(model_type='regression')
+            self.pasts[action] = XgboostModel(model_type='regression')
+        elif self.model_type == ModelType.NeuralNet:
+            self.futures[action] = NeuralNetModel(
+                input_dim=self.dimension,
+                output_dim=self.dimension)
+            self.pasts[action] = NeuralNetModel(
+                input_dim=self.dimension,
+                output_dim=self.dimension)
 
     @staticmethod
     def validateAction(func):
@@ -47,17 +55,21 @@ class Predictor:
         self.pasts.get(action).train(x_train, y_train)
 
     @validateAction
-    def predict_future(self, state, action):
+    def predict_future(self, action, state):
         return self.futures.get(action).model.predict(state)
 
     @validateAction
-    def predict_past(self, state, action):
+    def predict_past(self, action, state):
         return self.pasts.get(action).model.predict(state)
 
     @validateAction
-    def predict_future_uncertainty(self, state, action):
-        return PredictionModel.calculate_variance(
-            self.predict_future(state, action))
+    def predict_future_uncertainty(self, action, state):
+        if self.model_type == ModelType.XGBoost:
+            return XgboostModel.calculate_variance(
+                self.predict_future(action, state))
+        elif self.model_type == ModelType.NeuralNet:
+            return NeuralNetModel.calculate_variance(
+                self.predict_future(action, state))
 
     def actions_by_expected_information_gain(self, state, unexplored_actions):
         '''
@@ -68,14 +80,17 @@ class Predictor:
         https://chat.openai.com/share/7d7c12f6-7880-4083-8a59-16e64ca85f5e see
         "To extract an uncertainty measure..."
         '''
-
         def order_actions_by_variance(action_variance: dict) -> list:
             ''' orders the actions by their variance, lowest to highest '''
-            ordered_actions = sorted(action_variance, key=action_variance.get)
-            return ordered_actions
+            try:
+                ordered_actions = sorted(
+                    action_variance, key=action_variance.get)
+                return ordered_actions
+            except Exception as e:
+                return []
 
         return order_actions_by_variance(
             action_variance={
-                action: self.predict_future_uncertainty(state, action)
+                action: self.predict_future_uncertainty(action, state)
                 for action in unexplored_actions
                 if action in self.actions})
