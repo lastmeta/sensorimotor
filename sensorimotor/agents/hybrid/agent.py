@@ -3,8 +3,7 @@
 import numpy as np
 from sensorimotor import CountingGraph
 from sensorimotor.agents.naive import NaiveAgent
-from sensorimotor.agents.hybrid.predict.builder.nn import NeuralNetModel
-from sensorimotor.agents.hybrid.predict.builder.xgb import XgboostModel
+from sensorimotor.agents.hybrid.predict.builder import ModelType
 from sensorimotor.agents.hybrid.predict.predictor import Predictor
 from sensorimotor.agents.hybrid.predict.pathway import Pathway
 
@@ -17,16 +16,17 @@ class HybridAgent(NaiveAgent):
         self.graph: CountingGraph = CountingGraph()
         action_list = list(range(self.env.action_space.n))
         self.predictor = Predictor(
-            actions=action_list, dimension=self.state_dimension())
+            actions=action_list, dimension=self.state_dimension(),
+            model_type=ModelType.XGBoost)
         self.pathway = Pathway(
-            dimension=self.state_dimension())
+            dimension=self.state_dimension(),
+            model_type=ModelType.XGBoost)
         self.initial_training_done = False
 
     def train_predictive_models(self, action, current_state, next_state):
         ''' Train the predictive models with new state transition '''
-        if self.predictor.model.model == None:
-            return
-        if self.predictor.model is NeuralNetModel:
+        if self.predictor.model_type == ModelType.NeuralNet:
+            print('in nn')
             self.predictor.train_future_action(
                 action,
                 np.array([current_state]),
@@ -35,18 +35,35 @@ class HybridAgent(NaiveAgent):
                 action,
                 np.array([next_state]),
                 np.array([current_state]))
-        if self.predictor.model is XgboostModel:
+        if self.predictor.model_type == ModelType.XGBoost:
+            print('model is xgb')
             # get this dataset from the graph:
-            dataset = self.graph.get_state_stat(current_state)
+            dataset = self.graph.get_dataset()
+            print('dataset is', dataset)
+            if dataset is None:
+                return
             for action, parentChild in dataset.items():
+                print('training action:', action, 'parentChild:', parentChild)
+                # todo, we should really enforce that a state is a feature set
+                # at the environment level. actually no, that puts pressure on
+                # the environment, which is supposed to be soverign.
+                # in fact that is really the main issue we need to solve isn't
+                # it? we need to say, given the actions I have and what they do
+                # what is the optimal way to split a state into features? ...
+                # so if every state has a representation from the environment
+                # and we just treat each rep as it's own symbol,
+                # then learn how to build a sdr from those symbols according to
+                # what our actions do to those symbols... then we re-learn
+                # everything translating our history into those new symbols...
+                # that does seem like the best way to go about it.
                 self.predictor.train_future_action(
                     action,
-                    np.array(parentChild[0]),
-                    np.array(parentChild[1]))
+                    np.array(parentChild[0]).reshape(-1, 1),
+                    np.array(parentChild[1]).reshape(-1, 1))
                 self.predictor.train_past_action(
                     action,
-                    np.array(parentChild[1]),
-                    np.array(parentChild[0]))
+                    np.array(parentChild[1]).reshape(-1, 1),
+                    np.array(parentChild[0]).reshape(-1, 1))
 
     def train_pathway_models(self):
         ''' Train the predictive models with new state transition '''
@@ -108,7 +125,7 @@ class HybridAgent(NaiveAgent):
         learnedSomethingNew = True
         i = 0
         priorPairCount = 0
-        usingNN = self.predictor.model is NeuralNetModel
+        usingNN = self.predictor.model_type == ModelType.NeuralNet
         while learnedSomethingNew:
             if extraVerbose:
                 print('Iteration:', i, 'Graph Size:', len(self.graph.pairs))
@@ -121,6 +138,7 @@ class HybridAgent(NaiveAgent):
                 extraVerbose=False,
                 trainModels=usingNN)
             if not usingNN:
+                print('not using NN')
                 self.train_predictive_models(
                     '', self.prior, self.state)
                 self.train_pathway_models()
@@ -156,7 +174,7 @@ class HybridAgent(NaiveAgent):
                 self.memorize()
                 learnedSomethingNew = (
                     learnedSomethingNew + 1) if new else learnedSomethingNew
-                if trainModels and self.predictor.model is NeuralNetModel:
+                if trainModels and self.predictor.model_type == ModelType.NeuralNet:
                     self.train_predictive_models(
                         action, self.prior, self.state)
                     self.train_pathway_models()

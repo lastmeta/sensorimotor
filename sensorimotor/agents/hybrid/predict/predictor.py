@@ -56,20 +56,21 @@ class Predictor:
 
     @validateAction
     def predict_future(self, action, state):
-        return self.futures.get(action).model.predict(state)
+        return self.futures.get(action).predict(state)
 
     @validateAction
     def predict_past(self, action, state):
-        return self.pasts.get(action).model.predict(state)
+        return self.pasts.get(action).predict(state)
 
     @validateAction
     def predict_future_uncertainty(self, action, state):
+        future = self.predict_future(action, state)
+        if future is None or len(future) == 0:
+            return None
         if self.model_type == ModelType.XGBoost:
-            return XgboostModel.calculate_variance(
-                self.predict_future(action, state))
+            return XgboostModel.calculate_variance(future)
         elif self.model_type == ModelType.NeuralNet:
-            return NeuralNetModel.calculate_variance(
-                self.predict_future(action, state))
+            return NeuralNetModel.calculate_variance(future)
 
     def actions_by_expected_information_gain(self, state, unexplored_actions):
         '''

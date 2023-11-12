@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.exceptions import NotFittedError
 import xgboost as xgb
 from sensorimotor.agents.hybrid.predict.builder import ModelModel
 
@@ -12,22 +13,33 @@ class XgboostModel(ModelModel):
     def __init__(self, model_type='classification'):
         super().__init__(0, 0)
         # Initialize without a specific model
-        self.model = None
-        self.model_type = model_type
+        self.model: xgb.XGBClassifier = None
+        self.model_type: ModelModel = model_type
+        self.initialize_model()
 
     def initialize_model(self, y_train=None):
         # Determine model type based on y_train or self.model_type
-        if self.model_type is None and y_train is not None:
-            self.model_type = 'classification' if len(
-                np.unique(y_train)) > 2 else 'regression'
-        if self.model_type == 'classification':
-            self.model = xgb.XGBClassifier(objective='binary:logistic' if len(
+        # if self.model_type is None:
+        #    if y_train is not None and len(np.unique(y_train)) > 2:
+        #        self.model_type = 'regression'
+        #    else:
+        #        self.model_type = 'classification'
+        # if self.model_type == 'classification':
+        #    self.model = xgb.XGBClassifier(
+        #        eval_metric='logloss',
+        #        objective='binary:logistic' if len(
+        #            np.unique(y_train)) == 2 else 'multi:softprob')
+        # elif self.model_type == 'regression':
+        #    self.model = xgb.XGBRegressor(
+        #        eval_metric='rmse',
+        #        objective='reg:squarederror')
+        # else:
+        #    raise ValueError(
+        #        "Invalid model type. Must be 'regression' or 'classification'.")
+        self.model: xgb.XGBClassifier = xgb.XGBClassifier(
+            eval_metric='logloss',
+            objective='binary:logistic' if len(
                 np.unique(y_train)) == 2 else 'multi:softprob')
-        elif self.model_type == 'regression':
-            self.model = xgb.XGBRegressor(objective='reg:squarederror')
-        else:
-            raise ValueError(
-                "Invalid model type. Must be 'regression' or 'classification'.")
 
     @staticmethod
     def calculate_mse(predictions, actual):
@@ -48,10 +60,26 @@ class XgboostModel(ModelModel):
             self.initialize_model(y_train)
         if self.model is None:
             return
-        self.model.fit(x_train, y_train, eval_metric=(
-            "logloss" if self.model_type == 'classification' else "rmse"),
-            verbose=True,)
+        print('training xgboost model...')
+        print('x_train.shape:', x_train.shape)
+        print('y_train.shape:', y_train.shape)
+        print('x_train:', x_train)
+        print('y_train:', y_train)
+        self.model.fit(x_train, y_train, verbose=True)
 
-    def predict(self, x):
+    def predict(self, x, round=True):
         ''' Make predictions with the trained model '''
-        return self.model.predict(x)
+        try:
+            prediction = self.model.predict(x)
+            ret = []
+            for p in prediction:
+                if isinstance(p, float) and round:
+                    ret.append(round(p))
+                else:
+                    ret.append(p)
+            return ret
+        except NotFittedError:
+            return None
+        except Exception as e:
+            print('error:', e)
+            return None
